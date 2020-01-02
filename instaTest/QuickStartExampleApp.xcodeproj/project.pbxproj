@@ -32,6 +32,10 @@
 		BC57784423BBC1DE0089D723 /* libz.1.2.11.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BC57784323BBC1DE0089D723 /* libz.1.2.11.tbd */; };
 		BC57784623BBC1FC0089D723 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BC57784523BBC1FC0089D723 /* libsqlite3.tbd */; };
 		BC5BE59123BA69410051A1FE /* color blocks1.png in Resources */ = {isa = PBXBuildFile; fileRef = BC5BE59023BA69410051A1FE /* color blocks1.png */; };
+		BC61367423BBDA7900A79A18 /* signInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC61367323BBDA7900A79A18 /* signInVC.swift */; };
+		BC61367623BBDAA400A79A18 /* signUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC61367523BBDAA400A79A18 /* signUpVC.swift */; };
+		BC61367823BBDABD00A79A18 /* resetPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC61367723BBDABD00A79A18 /* resetPasswordVC.swift */; };
+		BC61367A23BBF4B900A79A18 /* ppl.png in Resources */ = {isa = PBXBuildFile; fileRef = BC61367923BBF4B800A79A18 /* ppl.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +88,10 @@
 		BC57784323BBC1DE0089D723 /* libz.1.2.11.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.11.tbd; path = usr/lib/libz.1.2.11.tbd; sourceTree = SDKROOT; };
 		BC57784523BBC1FC0089D723 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		BC5BE59023BA69410051A1FE /* color blocks1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "color blocks1.png"; sourceTree = "<group>"; };
+		BC61367323BBDA7900A79A18 /* signInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signInVC.swift; sourceTree = SOURCE_ROOT; };
+		BC61367523BBDAA400A79A18 /* signUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signUpVC.swift; sourceTree = SOURCE_ROOT; };
+		BC61367723BBDABD00A79A18 /* resetPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resetPasswordVC.swift; sourceTree = SOURCE_ROOT; };
+		BC61367923BBF4B800A79A18 /* ppl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ppl.png; sourceTree = SOURCE_ROOT; };
 		C767A8EBA99A2812762290B5 /* Pods-QuickStartExampleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickStartExampleApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QuickStartExampleApp/Pods-QuickStartExampleApp.debug.xcconfig"; sourceTree = "<group>"; };
 		DD30C375E8E729C0361C36F0 /* Pods_QuickStartExampleAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickStartExampleAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1E5608837FB78F8C2386F96 /* Pods-QuickStartExampleAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickStartExampleAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-QuickStartExampleAppUITests/Pods-QuickStartExampleAppUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -154,6 +162,10 @@
 		327DD6AC1FB3AA48008DADC2 /* QuickStartExampleApp */ = {
 			isa = PBXGroup;
 			children = (
+				BC61367923BBF4B800A79A18 /* ppl.png */,
+				BC61367323BBDA7900A79A18 /* signInVC.swift */,
+				BC61367523BBDAA400A79A18 /* signUpVC.swift */,
+				BC61367723BBDABD00A79A18 /* resetPasswordVC.swift */,
 				327DD6AD1FB3AA49008DADC2 /* AppDelegate.swift */,
 				327DD6AF1FB3AA49008DADC2 /* ViewController.swift */,
 				327DD6B11FB3AA49008DADC2 /* Main.storyboard */,
@@ -332,6 +344,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				327DD6B81FB3AA49008DADC2 /* LaunchScreen.storyboard in Resources */,
+				BC61367A23BBF4B900A79A18 /* ppl.png in Resources */,
 				327DD6B51FB3AA49008DADC2 /* Assets.xcassets in Resources */,
 				BC5BE59123BA69410051A1FE /* color blocks1.png in Resources */,
 				327DD6B31FB3AA49008DADC2 /* Main.storyboard in Resources */,
@@ -476,8 +489,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC61367623BBDAA400A79A18 /* signUpVC.swift in Sources */,
 				327DD6B01FB3AA49008DADC2 /* ViewController.swift in Sources */,
+				BC61367423BBDA7900A79A18 /* signInVC.swift in Sources */,
 				327DD6AE1FB3AA49008DADC2 /* AppDelegate.swift in Sources */,
+				BC61367823BBDABD00A79A18 /* resetPasswordVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -658,7 +674,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.back4app.QuickStartExampleApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -680,7 +696,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.back4app.QuickStartExampleApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

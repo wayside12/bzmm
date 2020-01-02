@@ -11,6 +11,8 @@ import Parse
 
 class ViewController: UIViewController {
 
+    
+    /*
     @IBOutlet var picture: UIImageView!
     let message = String()
     let sender = String()
@@ -23,7 +25,7 @@ class ViewController: UIViewController {
     @IBOutlet var receiver_label: UILabel!
     
     @IBOutlet var message_label: UILabel!
-    
+    */
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,7 +54,7 @@ class ViewController: UIViewController {
          */
         
         //Retrieving data from server
-        
+        /*
         let information = PFQuery(className: "messages")
         information.findObjectsInBackground { (objects:[AnyObject]?, error) in
             if error == nil {
@@ -83,22 +85,17 @@ class ViewController: UIViewController {
                             print(error!)
                         }
                         
-                    })
-                   
-                    
+                    })                                       
                     //print(object)
                 }
-                
-                
             }else {
                 print(error!)
             }
-            
         }
-        //as! PFQueryArrayResultBlock
-        
+        */
         
     }
+ 
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
