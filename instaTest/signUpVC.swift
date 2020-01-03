@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class signUpVC: UIViewController {
+class signUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet var avaImg: UIImageView!
     
@@ -100,7 +100,30 @@ class signUpVC: UIViewController {
         self.view.isUserInteractionEnabled = true
         self.view.addGestureRecognizer(hideTap)
         
+        //declare select image tap
+        let avaTap = UITapGestureRecognizer(target: self, action: #selector(loadImg(_ :)))
+        avaTap.numberOfTapsRequired = 1
+        avaImg.isUserInteractionEnabled = true
+        avaImg.addGestureRecognizer(avaTap)
+        
+        
     }
+    //call picker to select image
+    @objc func loadImg(_ recognizer:UITapGestureRecognizer){
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.sourceType = .photoLibrary
+        picker.allowsEditing = true
+        present(picker, animated: true, completion: nil)
+    }
+    
+    //connect selected image to imageview
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        avaImg.image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
     //hide keyboard if tapped
     @objc func hideKeyboardTap(_ recognizer:UITapGestureRecognizer){
         self.view.endEditing(true)
