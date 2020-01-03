@@ -7,9 +7,46 @@
 //
 
 import UIKit
-
+import Parse
 class resetPasswordVC: UIViewController {
 
+   
+    @IBOutlet var emailTxt: UITextField!
+    @IBOutlet var resetBtn: UIButton!
+    @IBOutlet var cancelBtn: UIButton!
+    
+    @IBAction func resetBtn_click(_ sender: Any) {
+        
+        //hide keyboard
+        self.view.endEditing(true)
+        
+        //if email is empty
+        if emailTxt.text!.isEmpty {
+            
+            //show alert message
+            let alert = UIAlertController(title: "Please", message: "fill in email", preferredStyle: UIAlertController.Style.alert)
+            let ok = UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil)
+            alert.addAction(ok)
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+        // reset password request
+        PFUser.requestPasswordResetForEmail(inBackground: emailTxt.text!) { (success:Bool, error:Error?) in
+            //show alert message
+            let alert = UIAlertController(title: "Email for resetting password", message: "has been sent to texted email", preferredStyle: UIAlertController.Style.alert)
+            
+            //if ok pressed, run self.dismiss function
+            let ok = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) { (UIAlertAction) in
+                self.dismiss(animated: true, completion: nil)
+            }
+            alert.addAction(ok)
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    
+    @IBAction func cancelBtn_click(_ sender: Any) {
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -17,14 +54,6 @@ class resetPasswordVC: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
 
 }
