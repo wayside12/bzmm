@@ -23,10 +23,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             $0.server = "https://parseapi.back4app.com"
         }
         Parse.initialize(with: configuration)
-        saveInstallationObject()
+        //saveInstallationObject()
+        //self.login()
         return true
     }
 
+  
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
@@ -49,6 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    /*
     func saveInstallationObject(){
         if let installation = PFInstallation.current(){
             installation.saveInBackground {
@@ -64,7 +68,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
         }
+    }*/
+    
+    func login() {
+        //remember username
+        let username = UserDefaults.standard.string(forKey: "username")
+        if username != nil{
+            let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let myTabBar = storyboard.instantiateViewController(withIdentifier: "tabBar") as! UITabBarController
+            window?.rootViewController = myTabBar
+    
+        }
+        
     }
+    
 
 
 }

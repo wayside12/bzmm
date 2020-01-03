@@ -19,6 +19,8 @@ class signUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     
     @IBOutlet var repeatTxt: UITextField!
     
+    @IBOutlet var emailTxt: UITextField!
+    
     @IBOutlet var fullnameTxt: UITextField!
     
     @IBOutlet var bioTxt: UITextField!
@@ -37,6 +39,62 @@ class signUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     
     @IBAction func signUpBtn_click(_ sender: Any) {
         //print("sign up pressed")
+     
+        self.view.endEditing(true)
+        
+        //if fields are empty
+        if usernameTxt.text!.isEmpty || passwordTxt.text!.isEmpty || emailTxt.text!.isEmpty || repeatTxt.text!.isEmpty || fullnameTxt.text!.isEmpty || bioTxt.text!.isEmpty || webTxt.text!.isEmpty {
+            let alert = UIAlertController(title: "Please", message: "fill all fields", preferredStyle: UIAlertController.Style.alert)
+            let ok = UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil)
+            alert.addAction(ok)
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+        if passwordTxt.text != repeatTxt.text {
+            let alert = UIAlertController(title: "Password", message: "do not match", preferredStyle: UIAlertController.Style.alert)
+            let ok = UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil)
+            alert.addAction(ok)
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+        //send data to server to related columns
+        let user = PFUser()
+        user.username = usernameTxt.text?.lowercased()
+        user.password = passwordTxt.text
+        user.email = emailTxt.text?.lowercased()
+        user["fullname"] = fullnameTxt.text?.lowercased()
+        user["bio"] = bioTxt.text
+        user["web"] = webTxt.text?.lowercased()
+        
+        //in edit profile it's going to be assigned
+        user["tel"] = ""
+        user["gender"] = ""
+        
+        //convert image for sending to server
+        let avaData = avaImg.image?.jpegData(compressionQuality: 0.5)
+        let avaFile = PFFileObject(name: "ava.jpg", data: avaData!)
+        user["ava"] = avaFile
+                
+        //save data in server
+        user.signUpInBackground { (success, error) in
+            if success {
+                print("registered")
+                
+                //remember username
+                UserDefaults.standard.set(user.username, forKey: "username")
+                //UserDefaults.synchronize()
+                
+                //call login function from appDelegate class
+                let appDelegate : AppDelegate = UIApplication.shared.delegate as! AppDelegate
+                appDelegate.login()
+                
+                
+            }else {
+                print(error?.localizedDescription)
+            }
+        }
+        
+     /*
         //unwrap, take image file data from UIImageView
         let data = avaImg.image!.pngData()
         
@@ -67,7 +125,7 @@ class signUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                 print(error ?? "error")                       }
             } as? PFBooleanResultBlock)
          
-
+*/
         
     }
     
@@ -99,6 +157,11 @@ class signUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         hideTap.numberOfTouchesRequired = 1
         self.view.isUserInteractionEnabled = true
         self.view.addGestureRecognizer(hideTap)
+        
+        //round ava
+        avaImg.layer.cornerRadius = avaImg.frame.size.width/2
+        avaImg.clipsToBounds = true
+        
         
         //declare select image tap
         let avaTap = UITapGestureRecognizer(target: self, action: #selector(loadImg(_ :)))

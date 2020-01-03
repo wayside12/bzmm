@@ -11,7 +11,6 @@
         <!--Sign InVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController id="BYZ-38-t0r" customClass="signInVC" customModule="QuickStartExampleApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -72,6 +71,7 @@
                         <outlet property="usernameTxt" destination="6ek-WC-aaI" id="1ar-CF-W03"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-311.19999999999999" y="-514.09295352323841"/>
         </scene>
@@ -110,25 +110,25 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="fullname" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BjX-pU-sAZ">
-                                        <rect key="frame" x="16" y="343" width="343" height="34"/>
+                                        <rect key="frame" x="16" y="380" width="343" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="web" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dvB-Xt-lLG">
-                                        <rect key="frame" x="16" y="443" width="343" height="34"/>
+                                        <rect key="frame" x="16" y="480" width="343" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="bio" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xzv-Fy-OPw">
-                                        <rect key="frame" x="16" y="393" width="343" height="34"/>
+                                        <rect key="frame" x="16" y="430" width="343" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8iz-LR-fdx">
-                                        <rect key="frame" x="294" y="501" width="73" height="30"/>
+                                        <rect key="frame" x="294" y="538" width="73" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -141,7 +141,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o9F-jT-Isn">
-                                        <rect key="frame" x="16" y="501" width="73" height="30"/>
+                                        <rect key="frame" x="16" y="538" width="73" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -153,6 +153,12 @@
                                             <action selector="signUpBtn_click:" destination="TqY-LP-0Cb" eventType="touchUpInside" id="nWV-xB-mvY"/>
                                         </connections>
                                     </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2WH-bO-2Zg">
+                                        <rect key="frame" x="16" y="318" width="343" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
                                 <viewLayoutGuide key="contentLayoutGuide" id="Cqc-kd-HeQ"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="JWp-nm-YX2"/>
@@ -165,6 +171,7 @@
                         <outlet property="avaImg" destination="ITz-kg-PTW" id="LqC-eq-NAS"/>
                         <outlet property="bioTxt" destination="xzv-Fy-OPw" id="gkg-XF-Tqq"/>
                         <outlet property="cancelBtn" destination="8iz-LR-fdx" id="uvQ-66-Sie"/>
+                        <outlet property="emailTxt" destination="2WH-bO-2Zg" id="C9G-Xr-vH1"/>
                         <outlet property="fullnameTxt" destination="BjX-pU-sAZ" id="pSe-gH-0YR"/>
                         <outlet property="passwordTxt" destination="2Jq-4A-8PJ" id="y6F-Xx-4hZ"/>
                         <outlet property="repeatTxt" destination="LUI-Jy-qqm" id="nka-bH-Juj"/>
@@ -192,6 +199,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AvK-7T-JgD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="932" y="-515"/>
+        </scene>
+        <!--Item 1-->
+        <scene sceneID="xjO-9B-xS9">
+            <objects>
+                <viewController id="3TH-Mu-gtm" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7bv-nS-yN2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="QlX-lH-0I5"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 1" id="AdF-jw-ebz"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zf7-Ue-UHR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2406" y="-531"/>
+        </scene>
+        <!--tabBar-->
+        <scene sceneID="ack-fY-Y9D">
+            <objects>
+                <tabBarController storyboardIdentifier="tabBar" title="tabBar" id="DW5-DY-g3M" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="z8L-MY-xVe">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="3TH-Mu-gtm" kind="relationship" relationship="viewControllers" id="i5I-3h-2pk"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ayr-ns-rzn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1645" y="-531"/>
         </scene>
     </scenes>
     <resources>

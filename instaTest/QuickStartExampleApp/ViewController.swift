@@ -26,8 +26,12 @@ class ViewController: UIViewController {
     
     @IBOutlet var message_label: UILabel!
     */
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+                
+        
+        
         
         //Create table and data in database
         /*
