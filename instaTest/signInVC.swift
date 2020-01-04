@@ -12,14 +12,24 @@ import Parse
 class signInVC: UIViewController {
 
     @IBOutlet var usernameTxt: UITextField!
-    
     @IBOutlet var passwordTxt: UITextField!
-    
     @IBOutlet var signInBtn: UIButton!
-    
     @IBOutlet var signUpBtn: UIButton!
-    
     @IBOutlet var forgotBtn: UIButton!
+    @IBOutlet var label: UILabel!
+    
+    override func viewDidLoad() {
+           super.viewDidLoad()
+
+        label.frame = CGRect(x: 10, y: 80, width: self.view.frame.size.width - 20, height: 50)
+        usernameTxt.frame = CGRect(x: 10, y: label.frame.origin.y + 70, width: self.view.frame.size.width - 20, height: 30)
+        passwordTxt.frame = CGRect(x: 10, y: usernameTxt.frame.origin.y + 40, width: self.view.frame.size.width - 20, height: 30)
+        forgotBtn.frame = CGRect(x: 10, y: passwordTxt.frame.origin.y + 40, width: self.view.frame.size.width - 20, height: 30)
+        signInBtn.frame = CGRect(x: 20, y: forgotBtn.frame.origin.y + 40, width: self.view.frame.size.width/4, height: 30)
+        signUpBtn.frame = CGRect(x: self.view.frame.width - self.view.frame.width/4 - 20 , y: forgotBtn.frame.origin.y + 40, width: self.view.frame.width/4, height: 30)
+        
+       }
+    
     
     @IBAction func signInBtn_click(_ sender: Any) {
         
@@ -56,21 +66,7 @@ class signInVC: UIViewController {
     }
     
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
+   
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

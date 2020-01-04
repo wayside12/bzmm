@@ -62,12 +62,20 @@
                                     <segue destination="kUc-HP-wws" kind="presentation" id="8Fb-xy-OKL"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="INSTAGRAM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="20B-G5-Lfh">
+                                <rect key="frame" x="16" y="125" width="343" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="Owt-iJ-20N"/>
                     </view>
                     <connections>
                         <outlet property="forgotBtn" destination="yDC-N6-zas" id="klO-d2-lEE"/>
+                        <outlet property="label" destination="20B-G5-Lfh" id="LC1-Kb-XZg"/>
                         <outlet property="passwordTxt" destination="aKQ-M9-3un" id="0dC-ab-ah5"/>
                         <outlet property="signInBtn" destination="QEu-nA-w1a" id="X0y-Yd-DwS"/>
                         <outlet property="signUpBtn" destination="MId-Ia-Z3e" id="7b2-an-6So"/>
