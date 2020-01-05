@@ -36,6 +36,12 @@
 		BC61367623BBDAA400A79A18 /* signUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC61367523BBDAA400A79A18 /* signUpVC.swift */; };
 		BC61367823BBDABD00A79A18 /* resetPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC61367723BBDABD00A79A18 /* resetPasswordVC.swift */; };
 		BC61367A23BBF4B900A79A18 /* ppl.png in Resources */ = {isa = PBXBuildFile; fileRef = BC61367923BBF4B800A79A18 /* ppl.png */; };
+		BC61367D23C173D700A79A18 /* Pacifico.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC61367C23C173D700A79A18 /* Pacifico.ttf */; };
+		BC61367E23C173D700A79A18 /* Pacifico.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC61367C23C173D700A79A18 /* Pacifico.ttf */; };
+		BC61367F23C173D700A79A18 /* Pacifico.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC61367C23C173D700A79A18 /* Pacifico.ttf */; };
+		BC61368123C1780B00A79A18 /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BC61368023C1780B00A79A18 /* bg.jpg */; };
+		BC61368223C1780B00A79A18 /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BC61368023C1780B00A79A18 /* bg.jpg */; };
+		BC61368323C1780B00A79A18 /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BC61368023C1780B00A79A18 /* bg.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +98,8 @@
 		BC61367523BBDAA400A79A18 /* signUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signUpVC.swift; sourceTree = SOURCE_ROOT; };
 		BC61367723BBDABD00A79A18 /* resetPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resetPasswordVC.swift; sourceTree = SOURCE_ROOT; };
 		BC61367923BBF4B800A79A18 /* ppl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ppl.png; sourceTree = SOURCE_ROOT; };
+		BC61367C23C173D700A79A18 /* Pacifico.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Pacifico.ttf; path = ../../../../../Downloads/pacifico/Pacifico.ttf; sourceTree = "<group>"; };
+		BC61368023C1780B00A79A18 /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg.jpg; sourceTree = "<group>"; };
 		C767A8EBA99A2812762290B5 /* Pods-QuickStartExampleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickStartExampleApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QuickStartExampleApp/Pods-QuickStartExampleApp.debug.xcconfig"; sourceTree = "<group>"; };
 		DD30C375E8E729C0361C36F0 /* Pods_QuickStartExampleAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickStartExampleAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1E5608837FB78F8C2386F96 /* Pods-QuickStartExampleAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickStartExampleAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-QuickStartExampleAppUITests/Pods-QuickStartExampleAppUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -172,6 +180,8 @@
 				BC5BE59023BA69410051A1FE /* color blocks1.png */,
 				327DD6B41FB3AA49008DADC2 /* Assets.xcassets */,
 				327DD6B61FB3AA49008DADC2 /* LaunchScreen.storyboard */,
+				BC61367C23C173D700A79A18 /* Pacifico.ttf */,
+				BC61368023C1780B00A79A18 /* bg.jpg */,
 				327DD6B91FB3AA49008DADC2 /* Info.plist */,
 			);
 			path = QuickStartExampleApp;
@@ -345,9 +355,11 @@
 			files = (
 				327DD6B81FB3AA49008DADC2 /* LaunchScreen.storyboard in Resources */,
 				BC61367A23BBF4B900A79A18 /* ppl.png in Resources */,
+				BC61367D23C173D700A79A18 /* Pacifico.ttf in Resources */,
 				327DD6B51FB3AA49008DADC2 /* Assets.xcassets in Resources */,
 				BC5BE59123BA69410051A1FE /* color blocks1.png in Resources */,
 				327DD6B31FB3AA49008DADC2 /* Main.storyboard in Resources */,
+				BC61368123C1780B00A79A18 /* bg.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,6 +367,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC61367E23C173D700A79A18 /* Pacifico.ttf in Resources */,
+				BC61368223C1780B00A79A18 /* bg.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,6 +376,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC61367F23C173D700A79A18 /* Pacifico.ttf in Resources */,
+				BC61368323C1780B00A79A18 /* bg.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

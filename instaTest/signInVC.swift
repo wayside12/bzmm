@@ -21,16 +21,35 @@ class signInVC: UIViewController {
     override func viewDidLoad() {
            super.viewDidLoad()
 
+        //pacifico font
+        label.font = UIFont(name: "Pacifico", size: 25)
+        
+        //alignment
         label.frame = CGRect(x: 10, y: 80, width: self.view.frame.size.width - 20, height: 50)
         usernameTxt.frame = CGRect(x: 10, y: label.frame.origin.y + 70, width: self.view.frame.size.width - 20, height: 30)
         passwordTxt.frame = CGRect(x: 10, y: usernameTxt.frame.origin.y + 40, width: self.view.frame.size.width - 20, height: 30)
         forgotBtn.frame = CGRect(x: 10, y: passwordTxt.frame.origin.y + 40, width: self.view.frame.size.width - 20, height: 30)
         signInBtn.frame = CGRect(x: 20, y: forgotBtn.frame.origin.y + 40, width: self.view.frame.size.width/4, height: 30)
         signUpBtn.frame = CGRect(x: self.view.frame.width - self.view.frame.width/4 - 20 , y: forgotBtn.frame.origin.y + 40, width: self.view.frame.width/4, height: 30)
-        
+    
+        //hide keyboard
+        let hideTap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboardTap(_:)))
+        hideTap.numberOfTouchesRequired = 1
+        self.view.isUserInteractionEnabled = true
+        self.view.addGestureRecognizer(hideTap)
+    
+        //background
+        let bg = UIImageView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
+        bg.image = UIImage(named: "bg.jpg")
+        bg.layer.zPosition = -1
+        self.view.addSubview(bg)
+                
        }
     
-    
+    @objc func hideKeyboardTap(_ recognizer:UITapGestureRecognizer){
+        
+        self.view.endEditing(true)
+    }
     @IBAction func signInBtn_click(_ sender: Any) {
         
         print("sign in clicked!")

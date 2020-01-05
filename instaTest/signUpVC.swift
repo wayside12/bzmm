@@ -149,12 +149,10 @@ class signUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         //working
         NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         
-        //NotificationCenter.default.addObserver(self, selector: Selector(("showKeyboard(:)")), name: UIResponder.keyboardWillShowNotification, object: nil)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
+        //hide keyboard
         let hideTap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboardTap(_ :)))
-
         hideTap.numberOfTouchesRequired = 1
         self.view.isUserInteractionEnabled = true
         self.view.addGestureRecognizer(hideTap)
