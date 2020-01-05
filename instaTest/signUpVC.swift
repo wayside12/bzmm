@@ -130,6 +130,7 @@ class signUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     }
     
     @IBAction func cancelBtn_click(_ sender: Any) {
+        
         self.dismiss(animated: true) {
             print("Cancel pressed")
         }
@@ -168,6 +169,20 @@ class signUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         avaTap.numberOfTapsRequired = 1
         avaImg.isUserInteractionEnabled = true
         avaImg.addGestureRecognizer(avaTap)
+        
+        avaImg.frame = CGRect(x: self.view.frame.width/2 - 40, y: 40, width: 80, height: 80)
+        usernameTxt.frame = CGRect(x: 10, y: avaImg.frame.origin.y + 90, width: self.view.frame.size.width - 20, height: 30)
+        passwordTxt.frame = CGRect(x: 10, y: usernameTxt.frame.origin.y + 40, width: self.view.frame.size.width - 20, height: 30)
+        repeatTxt.frame = CGRect(x: 10, y: passwordTxt.frame.origin.y + 40, width: self.view.frame.size.width - 20, height: 30)
+        
+        emailTxt.frame = CGRect(x: 10, y: repeatTxt.frame.origin.y + 60, width: self.view.frame.size.width - 20, height: 30)
+        fullnameTxt.frame = CGRect(x: 10, y: emailTxt.frame.origin.y + 40, width: self.view.frame.size.width - 20, height: 30)
+        bioTxt.frame = CGRect(x: 10, y: fullnameTxt.frame.origin.y + 40, width: self.view.frame.size.width - 20, height: 30)
+        webTxt.frame = CGRect(x: 10, y: bioTxt.frame.origin.y + 40, width: self.view.frame.size.width - 20, height: 30)
+        
+        signUpBtn.frame = CGRect(x: 20, y: webTxt.frame.origin.y + 50, width: self.view.frame.size.width/4, height: 30)
+        cancelBtn.frame = CGRect(x: self.view.frame.size.width - self.view.frame.size.width/4 - 20 , y: signUpBtn.frame.origin.y, width: self.view.frame.size.width/4, height: 30)
+        
         
         
     }
