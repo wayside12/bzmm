@@ -90,7 +90,10 @@ class signUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                 
                 
             }else {
-                print(error?.localizedDescription)
+                let alert = UIAlertController(title: "Error", message: error!.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let ok = UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(ok)
+                self.present(alert, animated: true, completion: nil)
             }
         }
         

@@ -61,10 +61,8 @@ class signInVC: UIViewController {
             alert.addAction(ok)
             self.present(alert, animated: true, completion: nil)
         }
-        //login function
         
-        //PFUser.logInWithUsername(inBackground: usernameTxt.text!, password: passwordTxt.text!) { (user:PFUser?, error:NSError?) -> Void in
-        //}
+        //login function
         PFUser.logInWithUsername(inBackground: usernameTxt.text!, password: passwordTxt.text!) { (user: PFUser?, error:Error?) in
             if error == nil {
                    //remember user
@@ -78,8 +76,11 @@ class signInVC: UIViewController {
                    
                    
                }else {
-                   print(error!.localizedDescription)
-               }
+                let alert = UIAlertController(title: "Error", message: error!.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let ok = UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(ok)
+                self.present(alert, animated: true, completion: nil)
+            }
         }
         
     }
