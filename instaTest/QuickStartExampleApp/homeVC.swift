@@ -13,18 +13,17 @@ class homeVC: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        print("ok here 1")
-        
+       //background color
         collectionView.backgroundColor = .white
-        self.view.backgroundColor = .white
-        print("ok here 2")
-
-       
+        
+        //header
+        self.navigationItem.title = PFUser.current()?.username?.uppercased()
+        
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
+        //define header
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Header", for: indexPath) as! headerView
         header.fullnameLbl.text = (PFUser.current()?.object(forKey: "fullname") as? String)?.uppercased()
         header.webTxt.text = PFUser.current()?.object(forKey: "web") as? String
