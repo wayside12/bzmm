@@ -120,6 +120,26 @@ class homeVC: UICollectionViewController {
             
         }
         
+        //count total posts
+        let posts = PFQuery(className: "post")
+        posts.whereKey("username", equalTo: PFUser.current()?.username!)
+        posts.countObjectsInBackground { (count, error) in
+            header.posts.text = "\(count)"
+        }
+        //count total followers
+        let follower = PFQuery(className: "follow")
+        follower.whereKey("following", equalTo: PFUser.current()?.username!)
+        follower.countObjectsInBackground { (count, error) in
+            header.followers.text = "\(count)"
+        }
+        
+        //count total following
+        let following = PFQuery(className: "follow")
+        following.whereKey("follower", equalTo: PFUser.current()?.username!)
+        following.countObjectsInBackground { (count, error) in
+            header.followings.text = "\(count)"
+        }
+                
         return header
         
     }
