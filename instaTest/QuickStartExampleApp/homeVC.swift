@@ -11,6 +11,16 @@ import Parse
 
 class homeVC: UICollectionViewController {
 
+    //refresher variable
+    var refresher : UIRefreshControl!
+    
+    //size of page
+    var page : Int = 10
+    
+    var uuidArray = [String]()
+    var picArray = [PFFileObject]()
+    
+    //default function
     override func viewDidLoad() {
         super.viewDidLoad()
        //background color
@@ -19,7 +29,75 @@ class homeVC: UICollectionViewController {
         //header
         self.navigationItem.title = PFUser.current()?.username?.uppercased()
         
+        //pull to refresh
+        let refresher = UIRefreshControl()
+        refresher.addTarget(self, action: "refresh", for: UIControl.Event.valueChanged)
+        collectionView.addSubview(refresher)
+        
+        //load post
+        loadPosts()
     }
+    
+    //refreshing func
+    func refresh() {
+        
+        //reload data info
+        collectionView.reloadData()
+        
+        //stop refresher animating
+        //refresher.endRefreshing()
+    }
+    
+    //load posts func
+    func loadPosts(){
+        
+        let query = PFQuery(className: "post")
+        query.whereKey("username", equalTo: PFUser.current()?.username!)
+        query.limit = page
+        query.findObjectsInBackground { (objects: [PFObject]?, error: Error?) in
+            if error == nil {
+                
+                //clean up
+                self.uuidArray.removeAll(keepingCapacity: false)
+                self.picArray.removeAll(keepingCapacity: false)
+                
+                for object in objects! {
+                    
+                    self.uuidArray.append(object.object(forKey: "uuid") as! String)
+                    self.picArray.append((object.object(forKey: "pic") as! PFFileObject))
+                    
+                }
+                self.collectionView.reloadData()
+                
+                
+            } else {
+                print(error?.localizedDescription)
+            }
+        }
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+         return picArray.count
+     }
+     
+     
+     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+         
+        // Configure the cell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! pictureCell
+       
+        //get pic from picArray
+        picArray[indexPath.row].getDataInBackground { (data, error) in
+            if error == nil {
+                cell.picImg.image = UIImage(data: data!)
+                
+            } else {
+                print(error?.localizedDescription)
+            }
+        }
+         return cell
+     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
@@ -47,20 +125,8 @@ class homeVC: UICollectionViewController {
     }
 
 
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-       
-        return 0
-    }
-    
-    /*
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-    
-        // Configure the cell
-    
-        return cell
-    }
-     */
+ 
+     
 
     // MARK: UICollectionViewDelegate
 
