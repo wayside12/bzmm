@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         Parse.initialize(with: configuration)
         //saveInstallationObject()
-        //self.login()
+        self.login()
         return true
     }
 

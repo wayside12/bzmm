@@ -48,6 +48,7 @@
 		BC61368923C39A2400A79A18 /* headerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC61368823C39A2400A79A18 /* headerView.swift */; };
 		BC61368A23C39A2400A79A18 /* headerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC61368823C39A2400A79A18 /* headerView.swift */; };
 		BC61368B23C39A2400A79A18 /* headerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC61368823C39A2400A79A18 /* headerView.swift */; };
+		BC61368D23C3A6B300A79A18 /* pictureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC61368C23C3A6B300A79A18 /* pictureCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +109,7 @@
 		BC61368023C1780B00A79A18 /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg.jpg; sourceTree = "<group>"; };
 		BC61368423C3995A00A79A18 /* homeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeVC.swift; sourceTree = "<group>"; };
 		BC61368823C39A2400A79A18 /* headerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = headerView.swift; sourceTree = "<group>"; };
+		BC61368C23C3A6B300A79A18 /* pictureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pictureCell.swift; sourceTree = "<group>"; };
 		C767A8EBA99A2812762290B5 /* Pods-QuickStartExampleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickStartExampleApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QuickStartExampleApp/Pods-QuickStartExampleApp.debug.xcconfig"; sourceTree = "<group>"; };
 		DD30C375E8E729C0361C36F0 /* Pods_QuickStartExampleAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickStartExampleAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1E5608837FB78F8C2386F96 /* Pods-QuickStartExampleAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickStartExampleAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-QuickStartExampleAppUITests/Pods-QuickStartExampleAppUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				327DD6AD1FB3AA49008DADC2 /* AppDelegate.swift */,
 				327DD6AF1FB3AA49008DADC2 /* ViewController.swift */,
 				327DD6B11FB3AA49008DADC2 /* Main.storyboard */,
+				BC61368C23C3A6B300A79A18 /* pictureCell.swift */,
 				BC5BE59023BA69410051A1FE /* color blocks1.png */,
 				327DD6B41FB3AA49008DADC2 /* Assets.xcassets */,
 				327DD6B61FB3AA49008DADC2 /* LaunchScreen.storyboard */,
@@ -515,6 +518,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC61368D23C3A6B300A79A18 /* pictureCell.swift in Sources */,
 				BC61367623BBDAA400A79A18 /* signUpVC.swift in Sources */,
 				BC61368523C3995A00A79A18 /* homeVC.swift in Sources */,
 				327DD6B01FB3AA49008DADC2 /* ViewController.swift in Sources */,

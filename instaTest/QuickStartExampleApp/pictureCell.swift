@@ -9,5 +9,8 @@
 import UIKit
 
 class pictureCell: UICollectionViewCell {
+    @IBOutlet var picImg: UIImageView!
+    
+    
     
 }

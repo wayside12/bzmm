@@ -7,47 +7,53 @@
 //
 
 import UIKit
-
-
-private let reuseIdentifier = "Cell"
+import Parse
 
 class homeVC: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        print("ok here 1")
+        
+        collectionView.backgroundColor = .white
+        self.view.backgroundColor = .white
+        print("ok here 2")
 
-        // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
+       
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    // MARK: UICollectionViewDataSource
-
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+    
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Header", for: indexPath) as! headerView
+        header.fullnameLbl.text = (PFUser.current()?.object(forKey: "fullname") as? String)?.uppercased()
+        header.webTxt.text = PFUser.current()?.object(forKey: "web") as? String
+        header.webTxt.sizeToFit()
+        
+        header.bioLbl.text = PFUser.current()?.object(forKey: "bio") as? String
+        header.bioLbl.sizeToFit()
+        
+        header.button.setTitle("Edit Profile", for: UIControl.State.normal)
+        
+        let avaQuery = PFUser.current()?.object(forKey: "ava") as! PFFileObject
+        
+        avaQuery.getDataInBackground { (data, error) in
+            //let data = NSData(data: imageData!)
+            header.avaImg.image = UIImage(data: data!)
+            
+        }
+        
+        return header
+        
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
+       
         return 0
     }
-
+    
+    /*
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
     
@@ -55,6 +61,7 @@ class homeVC: UICollectionViewController {
     
         return cell
     }
+     */
 
     // MARK: UICollectionViewDelegate
 
