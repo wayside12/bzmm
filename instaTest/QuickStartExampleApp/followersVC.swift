@@ -149,7 +149,8 @@ class followersVC: UITableViewController {
         //define cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! followersCell
         
-        //connect data from server to
+        
+        //STEP1: connect data from server to
         cell.usernameLbl.text = usernameArray[indexPath.row]
         avaArray[indexPath.row].getDataInBackground { (data, error) in
             if error == nil{
@@ -158,6 +159,36 @@ class followersVC: UITableViewController {
                 print(error?.localizedDescription)
             }
         }
+        //STEP 2
+        //in case of "followers", show if current user follows or not
+        let query = PFQuery(className: "follow")
+        query.whereKey("follower", equalTo: PFUser.current()?.username!)
+        query.whereKey("following", equalTo: cell.usernameLbl.text!)
+        query.countObjectsInBackground(block: { (count:Int32, error:Error?) in
+            if error == nil{
+                
+                //print("username: \(cell.usernameLbl.text!), count = \(count)")
+                if count == 0{
+                    cell.followBtn.setTitle("Follow", for: UIControl.State.normal)
+                    cell.followBtn.backgroundColor = .lightGray
+                }else {
+                    cell.followBtn.setTitle("Following", for: UIControl.State.normal)
+                    cell.followBtn.backgroundColor = UIColor.green
+                }
+                
+            }else{
+                print(error?.localizedDescription)
+            }
+            
+        })
+        
+        //hide follow button if cell user is current user
+        //do not understand what this does ??
+        if cell.usernameLbl.text == PFUser.current()?.username {
+            cell.followBtn.isHidden = true
+        }
+    
+        
         return cell
     }
     

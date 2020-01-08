@@ -45,7 +45,7 @@ class homeVC: UICollectionViewController {
         collectionView.reloadData()
         
         //stop refresher animating
-        //refresher.endRefreshing()
+        refresher.endRefreshing()
     }
     
     //load posts func
