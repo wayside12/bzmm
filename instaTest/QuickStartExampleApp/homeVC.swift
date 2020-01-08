@@ -31,21 +31,23 @@ class homeVC: UICollectionViewController {
         
         //pull to refresh
         let refresher = UIRefreshControl()
-        refresher.addTarget(self, action: "refresh", for: UIControl.Event.valueChanged)
-        collectionView.addSubview(refresher)
+        let title = NSLocalizedString("PullToReresh", comment: "Pull to refresh")
+        refresher.attributedTitle = NSAttributedString(string: title)
+        refresher.addTarget(self, action: #selector(refresh(sender:)), for: UIControl.Event.valueChanged)
+        collectionView.refreshControl = refresher
         
         //load post
         loadPosts()
     }
     
     //refreshing func
-    func refresh() {
+    @objc func refresh(sender:AnyObject) {
         
         //reload data info
         collectionView.reloadData()
         
         //stop refresher animating
-        refresher.endRefreshing()
+        sender.endRefreshing()
     }
     
     //load posts func
