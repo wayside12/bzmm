@@ -101,6 +101,7 @@ class homeVC: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
+        //STEP 1: get user data
         //define header
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Header", for: indexPath) as! headerView
         header.fullnameLbl.text = (PFUser.current()?.object(forKey: "fullname") as? String)?.uppercased()
@@ -120,6 +121,7 @@ class homeVC: UICollectionViewController {
             
         }
         
+        //STEP 2: count statistics
         //count total posts
         let posts = PFQuery(className: "post")
         posts.whereKey("username", equalTo: PFUser.current()?.username!)
@@ -139,14 +141,58 @@ class homeVC: UICollectionViewController {
         following.countObjectsInBackground { (count, error) in
             header.followings.text = "\(count)"
         }
-                
+
+        //STEP 3: implement tap gestures
+        //tap posts
+        let postsTap = UITapGestureRecognizer(target: self, action: #selector(homeVC.postsTap))
+        postsTap.numberOfTouchesRequired = 1
+        header.posts.isUserInteractionEnabled = true
+        header.posts.addGestureRecognizer(postsTap)
+  
+        //tap followers
+        let followersTap = UITapGestureRecognizer(target: self, action: #selector(homeVC.followersTap))
+        followersTap.numberOfTouchesRequired = 1
+        header.followers.isUserInteractionEnabled = true
+        header.followers.addGestureRecognizer(followersTap)
+        
+        //tap followings
+        let followingsTap = UITapGestureRecognizer(target: self, action: #selector(homeVC.followingsTap))
+        followingsTap.numberOfTouchesRequired = 1
+        header.followings.isUserInteractionEnabled = true
+        header.followings.addGestureRecognizer(followingsTap)
+  
         return header
         
     }
 
+    //taps posts label
+    @objc func postsTap(){
+        if !picArray.isEmpty {
+            let index = NSIndexPath(item: 0, section: 0)
+            self.collectionView.scrollToItem(at: index as IndexPath, at: UICollectionView.ScrollPosition.top, animated: true)
+        }
+        
+    }
 
  
+    @objc func followersTap(){
+        user = PFUser.current()!.username!
+        showItem = "followers"
+      
+        let followers = self.storyboard?.instantiateViewController(identifier: "followersVC") as! followersVC
+          
+        self.navigationController?.pushViewController(followers, animated: true)
+        
+    }
      
+    @objc func followingsTap() {
+        user = PFUser.current()!.username!
+        showItem = "followings"
+        
+        let followings = self.storyboard?.instantiateViewController(identifier: "followersVC") as! followersVC
+        self.navigationController?.pushViewController(followings, animated: true)
+        
+    }
 
     // MARK: UICollectionViewDelegate
 
