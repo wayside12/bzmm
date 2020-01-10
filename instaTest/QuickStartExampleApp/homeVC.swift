@@ -111,6 +111,8 @@ class homeVC: UICollectionViewController {
         //define header
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Header", for: indexPath) as! headerView
         header.fullnameLbl.text = (PFUser.current()?.object(forKey: "fullname") as? String)?.uppercased()
+        header.fullnameLbl.sizeToFit()
+        
         header.webTxt.text = PFUser.current()?.object(forKey: "web") as? String
         header.webTxt.sizeToFit()
         
