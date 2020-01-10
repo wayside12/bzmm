@@ -53,7 +53,8 @@ class guestVC: UICollectionViewController {
 
     @objc func refresh(sender:AnyObject){
         collectionView.reloadData()
-        refresher.endRefreshing()
+        refresher.endRefreshing()  //guest view stuck refreshing
+        
     }
 
     //back function
@@ -201,7 +202,7 @@ class guestVC: UICollectionViewController {
         followingQuery.whereKey("follower", equalTo: guestname.last)
         followingQuery.countObjectsInBackground { (count, error) in
             if error == nil{
-                 header.followers.text = "\(count)"
+                 header.followings.text = "\(count)"
              }else{
                  print(error?.localizedDescription)
              }
@@ -263,5 +264,7 @@ class guestVC: UICollectionViewController {
         self.navigationController?.pushViewController(followings, animated: true)
         
     }
+
+    
 }
 

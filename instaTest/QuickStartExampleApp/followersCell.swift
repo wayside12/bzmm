@@ -59,9 +59,7 @@ class followersCell: UITableViewCell {
             }
             
         }
-        
-        
-        
+         
     }
     override func awakeFromNib() {
         super.awakeFromNib()
