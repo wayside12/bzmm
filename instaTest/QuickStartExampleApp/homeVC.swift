@@ -202,6 +202,18 @@ class homeVC: UICollectionViewController {
         
     }
 
-
-
+    @IBAction func logout(_ sender: Any) {
+        
+        //remove user from default
+        UserDefaults.standard.removeObject(forKey: "username")
+        UserDefaults.standard.synchronize()
+        
+        let signin = self.storyboard?.instantiateViewController(identifier: "signInVC") as! signInVC
+        let appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = signin
+        
+    }
+    
+    
 }
+s

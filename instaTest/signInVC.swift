@@ -65,8 +65,8 @@ class signInVC: UIViewController {
         //login function
         PFUser.logInWithUsername(inBackground: usernameTxt.text!, password: passwordTxt.text!) { (user: PFUser?, error:Error?) in
             if error == nil {
-                   //remember user
-                   
+                
+                   //remember user                   
                    UserDefaults.standard.set(user!.username, forKey: "username")
                    //UserDefaults.synchronize(UserDefaults)
                    

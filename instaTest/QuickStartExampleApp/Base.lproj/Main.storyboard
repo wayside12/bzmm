@@ -11,7 +11,7 @@
         <!--Sign InVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="signInVC" customModule="QuickStartExampleApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="signInVC" id="BYZ-38-t0r" customClass="signInVC" customModule="QuickStartExampleApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -406,11 +406,17 @@
                             <outlet property="delegate" destination="Xkm-EZ-0Wb" id="nRv-aH-10H"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="30h-Sa-LYK"/>
+                    <navigationItem key="navigationItem" id="30h-Sa-LYK">
+                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="eJf-Zc-I4K">
+                            <connections>
+                                <action selector="logout:" destination="Xkm-EZ-0Wb" id="ofW-cw-smx"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BuM-jF-pVs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3589.5999999999999" y="-649.02548725637189"/>
+            <point key="canvasLocation" x="3551" y="-674"/>
         </scene>
         <!--FollowersVC-->
         <scene sceneID="x8I-YG-5kJ">
