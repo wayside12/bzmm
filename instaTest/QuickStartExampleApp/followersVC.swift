@@ -192,16 +192,24 @@ class followersVC: UITableViewController {
         return cell
     }
     
-    
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let cell = tableView.cellForRow(at: indexPath) as! followersCell
+        
+        if cell.usernameLbl.text == PFUser.current()?.username {
+            
+            let home = self.storyboard?.instantiateViewController(identifier: "homeVC") as! homeVC
+            self.navigationController?.pushViewController(home, animated: true)
+                        
+        }else {
+            guestname.append(cell.usernameLbl.text!)
+            let guest = self.storyboard?.instantiateViewController(identifier: "guestVC") as! guestVC
+            self.navigationController?.pushViewController(guest, animated: true)
+            
+        }
     }
-    */
+    
+  
 
     /*
     // Override to support conditional editing of the table view.
@@ -230,22 +238,8 @@ class followersVC: UITableViewController {
     }
     */
 
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
+  
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+  
 
 }

@@ -49,6 +49,7 @@
 		BC61368A23C39A2400A79A18 /* headerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC61368823C39A2400A79A18 /* headerView.swift */; };
 		BC61368B23C39A2400A79A18 /* headerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC61368823C39A2400A79A18 /* headerView.swift */; };
 		BC61368D23C3A6B300A79A18 /* pictureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC61368C23C3A6B300A79A18 /* pictureCell.swift */; };
+		BC89760823C65F0F00E1E261 /* guestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC89760723C65F0F00E1E261 /* guestVC.swift */; };
 		BCF8DBAD23C50F9C004BF964 /* followersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF8DBAC23C50F9C004BF964 /* followersVC.swift */; };
 		BCF8DBAF23C50FFB004BF964 /* followersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF8DBAE23C50FFB004BF964 /* followersCell.swift */; };
 /* End PBXBuildFile section */
@@ -112,6 +113,7 @@
 		BC61368423C3995A00A79A18 /* homeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeVC.swift; sourceTree = "<group>"; };
 		BC61368823C39A2400A79A18 /* headerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = headerView.swift; sourceTree = "<group>"; };
 		BC61368C23C3A6B300A79A18 /* pictureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pictureCell.swift; sourceTree = "<group>"; };
+		BC89760723C65F0F00E1E261 /* guestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = guestVC.swift; sourceTree = "<group>"; };
 		BCF8DBAC23C50F9C004BF964 /* followersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = followersVC.swift; sourceTree = "<group>"; };
 		BCF8DBAE23C50FFB004BF964 /* followersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = followersCell.swift; sourceTree = "<group>"; };
 		C767A8EBA99A2812762290B5 /* Pods-QuickStartExampleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickStartExampleApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QuickStartExampleApp/Pods-QuickStartExampleApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				BC61368823C39A2400A79A18 /* headerView.swift */,
 				BC61368423C3995A00A79A18 /* homeVC.swift */,
 				327DD6B11FB3AA49008DADC2 /* Main.storyboard */,
+				BC89760723C65F0F00E1E261 /* guestVC.swift */,
 			);
 			path = QuickStartExampleApp;
 			sourceTree = "<group>";
@@ -524,6 +527,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC89760823C65F0F00E1E261 /* guestVC.swift in Sources */,
 				BC61368D23C3A6B300A79A18 /* pictureCell.swift in Sources */,
 				BC61367623BBDAA400A79A18 /* signUpVC.swift in Sources */,
 				BC61368523C3995A00A79A18 /* homeVC.swift in Sources */,
