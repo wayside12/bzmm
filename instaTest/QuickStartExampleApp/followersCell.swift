@@ -61,11 +61,23 @@ class followersCell: UITableViewCell {
         }
          
     }
+    
+    
+    //default function
     override func awakeFromNib() {
         super.awakeFromNib()
 
+        //alignment
+        let width = UIScreen.main.bounds.width
+        
+        avaImg.frame = CGRect(x: 10, y: 10, width: width/5.3, height: width/5.3)
+        usernameLbl.frame = CGRect(x: avaImg.frame.size.width + 20, y: 30, width: width/3.2, height: 30)
+        //followBtn.frame = CGRect(x: usernameLbl.frame.origin.x + usernameLbl.frame.size.width + 10, y: 30, width: width/3.5, height: 30)
+        followBtn.frame = CGRect(x: width - width/3.5 - 10, y: 30, width: width/3.5, height: 30)
+        
+        //round image
         avaImg.layer.cornerRadius = avaImg.frame.size.width/2
-        avaImg.clipsToBounds = true        
+        avaImg.clipsToBounds = true
     }
 
 

@@ -132,10 +132,11 @@ class guestVC: UICollectionViewController {
                 }
                 for object in objects! {
                     header.fullnameLbl.text = (object.object(forKey: "fullname") as! String).uppercased()
+                    header.fullnameLbl.sizeToFit()
                     header.bioLbl.text = object.object(forKey: "bio") as! String
-                    //header.bioLbl.sizeToFit()
+                    header.bioLbl.sizeToFit()
                     header.webTxt.text = object.object(forKey: "web") as! String
-                    //header.webTxt.sizeToFit()
+                    header.webTxt.sizeToFit()
                     
                     let avaFile = object.object(forKey: "ava") as! PFFileObject
                     avaFile.getDataInBackground { (data:Data?, error:Error?) in

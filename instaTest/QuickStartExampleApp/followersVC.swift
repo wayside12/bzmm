@@ -143,6 +143,11 @@ class followersVC: UITableViewController {
         return usernameArray.count
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return self.view.frame.size.width/4
+        
+    }
+    
     //cell config
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
