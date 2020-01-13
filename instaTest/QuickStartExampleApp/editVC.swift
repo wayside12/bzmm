@@ -12,6 +12,7 @@ import Parse
 class editVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate ,UINavigationControllerDelegate {
 
     @IBOutlet var scrollView: UIScrollView!
+    //@IBOutlet var avaImg: UIImageView!
     @IBOutlet var avaImg: UIImageView!
     
     @IBOutlet var fullnameTxt: UITextField!
@@ -109,8 +110,8 @@ class editVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UI
         let height = self.view.frame.size.height
         
         scrollView.frame = CGRect(x: 0, y: 0, width: width, height: height)
-        avaImg.frame = CGRect(x: width - 68 - 10, y: 15, width: 50, height: 50)
-        avaImg.layer.cornerRadius = width / 2
+        avaImg.frame = CGRect(x: width - 68 - 10, y: 15, width: 68, height: 68)
+        avaImg.layer.cornerRadius = avaImg.frame.size.width / 2
         avaImg.clipsToBounds = true
          
         fullnameTxt.frame = CGRect(x: 10, y: avaImg.frame.origin.y, width: width - avaImg.frame.size.width  - 50, height: 30)

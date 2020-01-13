@@ -430,7 +430,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="120" translatesAutoresizingMaskIntoConstraints="NO" id="G8u-cx-RjK" customClass="followersCell" customModule="QuickStartExampleApp" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="120" translatesAutoresizingMaskIntoConstraints="NO" id="G8u-cx-RjK" customClass="followersCell" customModule="QuickStartExampleApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="G8u-cx-RjK" id="jJy-pg-6Rf">
@@ -489,13 +489,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wai-fk-grG">
-                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="591"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ppl.png" translatesAutoresizingMaskIntoConstraints="NO" id="Pum-E6-xgh">
-                                        <rect key="frame" x="289" y="8" width="68" height="68"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
                                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="fullname" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="ZEb-f1-NAH">
                                         <rect key="frame" x="28" y="8" width="248" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -547,6 +543,10 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ppl.png" translatesAutoresizingMaskIntoConstraints="NO" id="wfy-qV-Daw">
+                                        <rect key="frame" x="289" y="8" width="68" height="63"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <viewLayoutGuide key="contentLayoutGuide" id="oZc-zp-TYY"/>
@@ -569,7 +569,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="avaImg" destination="Pum-E6-xgh" id="Doh-Zj-WPa"/>
+                        <outlet property="avaImg" destination="wfy-qV-Daw" id="oRN-Ra-zxl"/>
                         <outlet property="bioTxt" destination="ie8-A8-kR3" id="TKR-o0-TWC"/>
                         <outlet property="emailTxt" destination="i5a-Hg-sUT" id="R6I-uP-1y0"/>
                         <outlet property="fullnameTxt" destination="ZEb-f1-NAH" id="FoH-qs-9QP"/>

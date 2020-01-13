@@ -44,12 +44,21 @@ class homeVC: UICollectionViewController {
         loadPosts()
     }
     
+    
+    
     //refreshing func
     @objc func refresh(sender:AnyObject) {
         
         //reload data info
-        collectionView.reloadData()
+        //collectionView.reloadData()
         
+        DispatchQueue.main.async{
+            print("start reloading data")
+            self.collectionView.reloadData()
+        }
+//        collectionView!.collectionViewLayout.invalidateLayout()
+//        collectionView!.layoutSubviews()
+
         //stop refresher animating
         sender.endRefreshing()
     }
