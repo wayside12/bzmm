@@ -48,6 +48,7 @@ class signUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
             let ok = UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil)
             alert.addAction(ok)
             self.present(alert, animated: true, completion: nil)
+            return
         }
         
         if passwordTxt.text != repeatTxt.text {
@@ -55,6 +56,7 @@ class signUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
             let ok = UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil)
             alert.addAction(ok)
             self.present(alert, animated: true, completion: nil)
+            return
         }
         
         //send data to server to related columns

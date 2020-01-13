@@ -59,10 +59,33 @@ class editVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UI
         imageTap.numberOfTouchesRequired = 1
         avaImg.isUserInteractionEnabled = true
         avaImg.addGestureRecognizer(imageTap)
-    
         
         //call alignment
         alignment()
+        
+        //call information function
+        information()
+    }
+    
+    //retrieve user information
+    func information() {
+        let ava = PFUser.current()?.object(forKey: "ava") as! PFFileObject
+        ava.getDataInBackground { (data, error) in
+            if error == nil{
+                self.avaImg.image = UIImage(data: data!)
+            }else {
+                print(error?.localizedDescription)
+            }
+        }
+        fullnameTxt.text = PFUser.current()?.object(forKey: "fullname") as? String
+        usernameTxt.text = PFUser.current()?.object(forKey: "username") as? String
+        bioTxt.text = PFUser.current()?.object(forKey: "bio") as? String
+        webTxt.text = PFUser.current()?.object(forKey: "web") as? String
+      
+        emailTxt.text = PFUser.current()?.object(forKey: "email") as? String
+        telTxt.text = PFUser.current()?.object(forKey: "tel") as? String
+        genderTxt.text = PFUser.current()?.object(forKey: "gender") as? String
+        
     }
     
     //func to call UIImagePickerController
@@ -91,7 +114,7 @@ class editVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UI
                //let keyboardHeight = keyboard.height
            }
         UIView.animate(withDuration: 0.4) {
-            self.scrollView.contentSize.height = self.view.frame.size.height + self.keyboard.height/4
+            self.scrollView.contentSize.height = self.view.frame.size.height + self.keyboard.height/2
         }
                 
     }
@@ -100,7 +123,6 @@ class editVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UI
         UIView.animate(withDuration: 0.4) {
             self.scrollView.contentSize.height = 0
         }
-        
     }
     
     //alignment
@@ -136,7 +158,98 @@ class editVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UI
         self.view.endEditing(true)
         self.dismiss(animated: true, completion: nil)
     }
+    
+    
+    //regular expression(regex) for email textfield
+    func validateEmail(email : String) -> Bool{
+        
+        return email.isValidEmail
+        
+        /*
+        let regex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+         //"[A-Z0-9a-z._%+-]{4}+@[A-Z0-9a-z.-]+\\.[A-Za-z]{2,6}"
+        let range = email.range(of: regex)
+        let result = range != nil ? true : false
+        return result
+         */
+    }
+    
+    //regex for web text
+    func validateWeb(web : String) -> Bool {
+        
+        return web.isValidUrl
+        /*
+        let regex = "www.[A-Za-z0-9._%+-]+.[A-Za-z]{2}"
+        let range = web.range(of: regex)
+        let result = range != nil ? true : false
+        return result
+         */
+    }
+    
+    //alert message function
+    func alert(error : String, message : String) {
+        let alert = UIAlertController(title: error, message: message, preferredStyle: UIAlertController.Style.alert)
+        let ok = UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil)
+        alert.addAction(ok)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    //clicked save button
     @IBAction func save_clicked(_ sender: Any) {
+        
+        //validate email and web
+        if !validateEmail(email: emailTxt.text!) {
+            alert(error: "Incorrect email", message: "Please provide correct email address")
+            return
+        }
+        if !validateWeb(web: webTxt.text!) {
+            alert(error: "Incorrect web link", message: "Please provide correct web address")
+            return
+        }
+        
+        //save filled in information
+        let user = PFUser.current()!
+        user.username = usernameTxt.text?.lowercased()
+        user.email = emailTxt.text?.lowercased()
+        user["fullname"] = fullnameTxt.text?.lowercased()
+        user["web"] = webTxt.text?.lowercased()
+        user["bio"] = bioTxt.text
+        
+        //if tel is empty, send empty data, elsed entered data
+        if telTxt.text!.isEmpty{
+            user["tel"] = ""
+        }else {
+            user["tel"] = telTxt.text
+        }
+        if genderTxt.text!.isEmpty {
+            user["gender"] = ""
+        }else{
+            user["gender"] = genderTxt.text
+        }
+        
+        //update ava picture
+        let avaData = avaImg.image?.jpegData(compressionQuality: 0.5)
+        let avaFile = PFFileObject(name: "ava.jpg", data: avaData!)
+        user["ava"] = avaFile
+        
+        //send filled information to server
+        user.saveInBackground { (success:Bool, error:Error?) in
+            if success {
+                
+                //hide keyboard
+                self.view.endEditing(true)
+                
+                //dismiss editVC
+                self.dismiss(animated: true, completion: nil)
+                
+                //send notification to homeVC to reload                
+                NotificationCenter.default.post(name: Notification.Name("reload"), object: nil)
+                
+            }else {
+                print(error?.localizedDescription)
+            }
+        }
+        
     }
     
     //PICKER VIEW METHODS
@@ -160,4 +273,26 @@ class editVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UI
     
     
 
+}
+
+
+
+extension String {
+   var isValidEmail: Bool {
+      let regularExpressionForEmail = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+      let testEmail = NSPredicate(format:"SELF MATCHES %@", regularExpressionForEmail)
+      return testEmail.evaluate(with: self)
+   }
+   var isValidPhone: Bool {
+      let regularExpressionForPhone = "^\\d{3}-\\d{3}-\\d{4}$"
+      let testPhone = NSPredicate(format:"SELF MATCHES %@", regularExpressionForPhone)
+      return testPhone.evaluate(with: self)
+   }
+    
+    var isValidUrl: Bool {
+        let urlRegEx = "^(https?://)?(www\\.)?([-a-z0-9]{1,63}\\.)*?[a-z0-9][-a-z0-9]{0,61}[a-z0-9]\\.[a-z]{2,6}(/[-\\w@\\+\\.~#\\?&/=%]*)?$"
+        let urlTest = NSPredicate(format:"SELF MATCHES %@", urlRegEx)
+        let result = urlTest.evaluate(with: self)
+        return result
+    }
 }

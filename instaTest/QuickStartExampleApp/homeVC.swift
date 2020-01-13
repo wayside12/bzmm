@@ -40,6 +40,9 @@ class homeVC: UICollectionViewController {
         refresher.addTarget(self, action: #selector(refresh(sender:)), for: UIControl.Event.valueChanged)
         collectionView.refreshControl = refresher
         
+        //receive notification from editVC
+        NotificationCenter.default.addObserver(self, selector: #selector(reload(sender:)), name: Notification.Name("reload"), object: nil)
+        
         //load post
         loadPosts()
     }
@@ -50,18 +53,21 @@ class homeVC: UICollectionViewController {
     @objc func refresh(sender:AnyObject) {
         
         //reload data info
-        //collectionView.reloadData()
+        collectionView.reloadData()
+//        DispatchQueue.main.async{
+//            print("start reloading data")
+//            self.collectionView.reloadData()
+//        }
         
-        DispatchQueue.main.async{
-            print("start reloading data")
-            self.collectionView.reloadData()
-        }
-//        collectionView!.collectionViewLayout.invalidateLayout()
-//        collectionView!.layoutSubviews()
-
         //stop refresher animating
         sender.endRefreshing()
     }
+    
+    @objc func reload(sender:Any) {
+        collectionView.reloadData()
+    }
+    
+    
     
     //load posts func
     func loadPosts(){
