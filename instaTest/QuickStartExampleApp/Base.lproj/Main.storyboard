@@ -263,6 +263,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="fi1-7g-P0l" kind="relationship" relationship="viewControllers" id="m5E-qI-Sym"/>
+                        <segue destination="Eo8-fH-Jch" kind="relationship" relationship="viewControllers" id="Pce-gc-dQW"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dMd-Ly-lkB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -291,7 +292,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="106" height="106"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OM3-Xo-g8j">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="postbg.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="OM3-Xo-g8j">
                                             <rect key="frame" x="0.0" y="0.0" width="106" height="106"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
@@ -478,7 +479,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wQN-g8-nkl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4342" y="-649"/>
+            <point key="canvasLocation" x="4338" y="-1123"/>
         </scene>
         <!--EditVC-->
         <scene sceneID="M3w-m8-D2j">
@@ -583,7 +584,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K8q-Ii-tQ4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5061.6000000000004" y="143.47826086956522"/>
+            <point key="canvasLocation" x="6000.8000000000002" y="-368.36581709145429"/>
         </scene>
         <!--Item-->
         <scene sceneID="tkH-xp-SUC">
@@ -626,7 +627,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="106" height="106"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="elh-MS-hjV">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="postbg.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="elh-MS-hjV">
                                             <rect key="frame" x="0.0" y="0.0" width="106" height="106"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
@@ -748,7 +749,51 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mek-Zq-XjR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5266" y="-649"/>
+            <point key="canvasLocation" x="5062" y="-1123"/>
+        </scene>
+        <!--UploadVC-->
+        <scene sceneID="LCS-8v-Rww">
+            <objects>
+                <viewController id="dtp-jm-Rmf" customClass="uploadVC" customModule="QuickStartExampleApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tde-sF-Oyb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="postbg.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="RoC-TL-OM5">
+                                <rect key="frame" x="10" y="70" width="90" height="90"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wwc-Sp-udN">
+                                <rect key="frame" x="115" y="70" width="244" height="90"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x2L-E0-CxJ">
+                                <rect key="frame" x="0.0" y="576" width="375" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="PUBLISH">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="9bJ-du-yVm"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="CA2-IL-LCj"/>
+                    <connections>
+                        <outlet property="picImg" destination="RoC-TL-OM5" id="sYW-2I-cXt"/>
+                        <outlet property="publishBtn" destination="x2L-E0-CxJ" id="ifE-jn-Sjs"/>
+                        <outlet property="titleTxt" destination="wwc-Sp-udN" id="qum-uk-RfY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3zc-s7-nTN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3549.5999999999999" y="102.99850074962519"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="OoF-Th-UEf">
@@ -766,10 +811,30 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iBK-P0-HTv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4254" y="144"/>
+            <point key="canvasLocation" x="5276" y="-368.36581709145429"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="dli-te-4wZ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Eo8-fH-Jch" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="uLF-Xk-fUz"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="u34-gV-n7C">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="dtp-jm-Rmf" kind="relationship" relationship="rootViewController" id="yTb-5s-UsA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wid-4L-z26" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2620" y="103"/>
         </scene>
     </scenes>
     <resources>
+        <image name="postbg.jpeg" width="225" height="225"/>
         <image name="ppl.png" width="512" height="512"/>
     </resources>
 </document>
