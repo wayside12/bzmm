@@ -479,7 +479,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wQN-g8-nkl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4338" y="-1123"/>
+            <point key="canvasLocation" x="4314" y="-1369"/>
         </scene>
         <!--EditVC-->
         <scene sceneID="M3w-m8-D2j">
@@ -584,7 +584,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K8q-Ii-tQ4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6000.8000000000002" y="-368.36581709145429"/>
+            <point key="canvasLocation" x="5180" y="-674"/>
         </scene>
         <!--Item-->
         <scene sceneID="tkH-xp-SUC">
@@ -749,7 +749,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mek-Zq-XjR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5062" y="-1123"/>
+            <point key="canvasLocation" x="5039" y="-1369"/>
         </scene>
         <!--UploadVC-->
         <scene sceneID="LCS-8v-Rww">
@@ -783,6 +783,15 @@
                                     <action selector="publishBtn_clicked:" destination="dtp-jm-Rmf" eventType="touchUpInside" id="NJE-43-6MI"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ks2-B6-DqF">
+                                <rect key="frame" x="29" y="179" width="54" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <state key="normal" title="REMOVE"/>
+                                <connections>
+                                    <action selector="removeBtn_clicked:" destination="dtp-jm-Rmf" eventType="touchUpInside" id="FpF-ie-tQJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="9bJ-du-yVm"/>
@@ -791,6 +800,7 @@
                     <connections>
                         <outlet property="picImg" destination="RoC-TL-OM5" id="sYW-2I-cXt"/>
                         <outlet property="publishBtn" destination="x2L-E0-CxJ" id="ifE-jn-Sjs"/>
+                        <outlet property="removeBtn" destination="ks2-B6-DqF" id="9vi-x7-IHS"/>
                         <outlet property="titleTxt" destination="wwc-Sp-udN" id="qum-uk-RfY"/>
                     </connections>
                 </viewController>
@@ -814,7 +824,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iBK-P0-HTv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5276" y="-368.36581709145429"/>
+            <point key="canvasLocation" x="4455" y="-674"/>
         </scene>
         <!--Item-->
         <scene sceneID="dli-te-4wZ">

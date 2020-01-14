@@ -14,6 +14,7 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     @IBOutlet var picImg: UIImageView!
     @IBOutlet var titleTxt: UITextView!
     @IBOutlet var publishBtn: UIButton!
+    @IBOutlet var removeBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +22,13 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         //diable publish button until image loaded
         publishBtn.isEnabled = false
         publishBtn.backgroundColor = .lightGray
+        
+        // hide remove button
+        removeBtn.isEnabled = false
+        
+        //standard bg pic
+        picImg.image = UIImage(named: "postbg.jpeg")
+        //titleTxt.text = ""
         
         //hide keyboard tap
         let hideTap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboardTap(sender:)))
@@ -31,9 +39,8 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         //select image tap
         let picTap = UITapGestureRecognizer(target: self, action: #selector(selectImg(sender:)))
         picTap.numberOfTouchesRequired = 1
-        self.view.isUserInteractionEnabled = true
-        self.view.addGestureRecognizer(picTap)
-        
+        self.picImg.isUserInteractionEnabled = true
+        self.picImg.addGestureRecognizer(picTap)
         
         
         alignment()
@@ -59,6 +66,9 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         publishBtn.isEnabled = true
         publishBtn.backgroundColor = UIColor(red: 52.0/255.0, green: 169.0/255.0, blue: 255.0/255.0, alpha: 1.0)
         
+        //unhide remove button
+        removeBtn.isEnabled = true
+        
         //implement the second tap to zoom in/out
         let zoomTap = UITapGestureRecognizer(target: self, action: #selector(zoomimg(sender:)))
         zoomTap.numberOfTouchesRequired = 1
@@ -82,6 +92,9 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                 self.view.backgroundColor = .black
                 self.titleTxt.alpha = 0
                 self.publishBtn.alpha = 0
+                
+                //hide remove button
+                self.removeBtn.isEnabled = false
             }
         }else{
             
@@ -92,6 +105,9 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                 self.view.backgroundColor = .white
                 self.titleTxt.alpha = 1
                 self.publishBtn.alpha = 1
+                
+                //unhide remove button
+                self.removeBtn.isEnabled = true
             }
         }
     }
@@ -109,7 +125,7 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         picImg.frame = CGRect(x: 10, y: self.navigationController!.navigationBar.frame.size.height + 35, width: width / 4.5, height: width / 4.5)
         titleTxt.frame = CGRect(x: picImg.frame.size.width + 25, y: picImg.frame.origin.y, width: width - picImg.frame.size.width - 40, height: picImg.frame.size.height)
         publishBtn.frame = CGRect(x: 0, y: self.tabBarController!.tabBar.frame.origin.y - width / 8, width: width, height: width/8)
-        
+        removeBtn.frame = CGRect(x: picImg.frame.origin.x, y: picImg.frame.origin.y + picImg.frame.size.height + 15, width: picImg.frame.size.width, height: 30)
     }
     
     //clicked publish button
@@ -144,15 +160,20 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                 //switch to another view controller with 0 index of tabbar
                 self.tabBarController?.selectedIndex = 0
                 
+                //reset everything
+                self.viewDidLoad()
+                self.titleTxt.text = ""
+                
             }else{
                 print(error?.localizedDescription)
             }
         }
-        
-        
-        
+         
     }
     
-
+    @IBAction func removeBtn_clicked(_ sender: Any) {
+        self.viewDidLoad()
+    }
+    
 
 }

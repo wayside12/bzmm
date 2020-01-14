@@ -56,12 +56,7 @@ class homeVC: UICollectionViewController {
         
         //reload data info
         print("refreshing the page ... ")
-        
         collectionView.reloadData()
-//        DispatchQueue.main.async{
-//            print("start reloading data")
-//            self.collectionView.reloadData()
-//        }
         
         //stop refresher animating
         sender.endRefreshing()
@@ -72,7 +67,6 @@ class homeVC: UICollectionViewController {
         collectionView.reloadData()
     }
      
-    //@objc func upload(sender:Any) {
     @objc func upload(sender: Any) {
         
         print("received and processing upload notification")

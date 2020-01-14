@@ -50,13 +50,6 @@ class headerView: UICollectionReusableView {
         webTxt.frame = CGRect(x: avaImg.frame.origin.x - 5, y: fullnameLbl.frame.origin.y + 15, width: width - 30, height: 20)
         bioLbl.frame = CGRect(x: avaImg.frame.origin.x, y: webTxt.frame.origin.y + 30, width: width - 30, height: 30)
         
-        print("screen width = \(width)")
-        print("button width = \(button.frame.size.width)")
-        print("button x = \(button.frame.origin.x)")
-        
-        print("ava image x \(avaImg.frame.origin.x)  y = \(avaImg.frame.origin.y)  width = \(avaImg.frame.size.width) height = \(avaImg.frame.size.height)")
-        
-        print("fullname label x = \(fullnameLbl.frame.origin.x)  y = \(fullnameLbl.frame.origin.y)  height = \(fullnameLbl.frame.size.height)")
         //round img
         avaImg.layer.cornerRadius = avaImg.frame.size.width/2
         avaImg.clipsToBounds = true
