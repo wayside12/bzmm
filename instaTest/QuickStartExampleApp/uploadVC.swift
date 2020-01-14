@@ -46,7 +46,7 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.sourceType = .photoLibrary
-        picker.allowsEditing = true
+        picker.allowsEditing = true //TODO: cannot edit image
         present(picker, animated: true, completion: nil)
         
     }
@@ -93,10 +93,7 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                 self.titleTxt.alpha = 1
                 self.publishBtn.alpha = 1
             }
-            
         }
-        
-        
     }
     
     
@@ -105,6 +102,7 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         
         
     }
+    
     func alignment() {
         
         let width = self.view.frame.size.width
@@ -114,6 +112,46 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         
     }
     
+    //clicked publish button
+    @IBAction func publishBtn_clicked(_ sender: Any) {
+        //dismiss keyboard
+        self.view.endEditing(true)
+        
+        //collect data for class 'post'
+        let object = PFObject(className: "post")
+        object["username"] = PFUser.current()?.username
+        object["ava"] = PFUser.current()?.value(forKey: "ava") as! PFFileObject
+        object["uuid"] = "\(PFUser.current()?.username)\(NSUUID().uuidString)"
+        
+        if titleTxt.text == "" {
+            object["title"] = ""
+        }else{
+            object["title"] = titleTxt.text.trimmingCharacters(in:NSCharacterSet.whitespacesAndNewlines)
+        }
+        //convert image to file and compress
+        let imageData = picImg.image?.jpegData(compressionQuality: 0.5)
+        let imageFile = PFFileObject(name: "post.jpg", data: imageData!)
+        object["pic"] = imageFile
+        
+        //save to Parse server
+        object.saveInBackground { (success, error) in
+            if success{
+                
+                print("saved on the server!")
+                //send notification with name "uploaded"
+                NotificationCenter.default.post(name: NSNotification.Name("uploaded"), object: nil)
+              
+                //switch to another view controller with 0 index of tabbar
+                self.tabBarController?.selectedIndex = 0
+                
+            }else{
+                print(error?.localizedDescription)
+            }
+        }
+        
+        
+        
+    }
     
 
 

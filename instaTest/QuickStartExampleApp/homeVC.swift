@@ -15,7 +15,7 @@ class homeVC: UICollectionViewController {
     var refresher : UIRefreshControl!
     
     //size of page
-    var page : Int = 10
+    var page : Int = 15
     
     var uuidArray = [String]()
     var picArray = [PFFileObject]()
@@ -42,6 +42,8 @@ class homeVC: UICollectionViewController {
         
         //receive notification from editVC
         NotificationCenter.default.addObserver(self, selector: #selector(reload(sender:)), name: Notification.Name("reload"), object: nil)
+        //receive notification from uploadVC
+        NotificationCenter.default.addObserver(self, selector: #selector(upload(sender:)), name: NSNotification.Name("uploaded"), object: nil)
         
         //load post
         loadPosts()
@@ -53,6 +55,8 @@ class homeVC: UICollectionViewController {
     @objc func refresh(sender:AnyObject) {
         
         //reload data info
+        print("refreshing the page ... ")
+        
         collectionView.reloadData()
 //        DispatchQueue.main.async{
 //            print("start reloading data")
@@ -63,10 +67,17 @@ class homeVC: UICollectionViewController {
         sender.endRefreshing()
     }
     
-    @objc func reload(sender:Any) {
+    @objc func reload(sender: Any) {
+        print("reload after user updated profile... ")
         collectionView.reloadData()
     }
-    
+     
+    //@objc func upload(sender:Any) {
+    @objc func upload(sender: Any) {
+        
+        print("received and processing upload notification")
+        loadPosts()
+    }
     
     
     //load posts func
@@ -88,8 +99,9 @@ class homeVC: UICollectionViewController {
                     self.picArray.append((object.object(forKey: "pic") as! PFFileObject))
                     
                 }
+                print("objects count = \(objects?.count)")
                 self.collectionView.reloadData()
-                
+                //DispatchQueue.main.async
                 
             } else {
                 print(error?.localizedDescription)
