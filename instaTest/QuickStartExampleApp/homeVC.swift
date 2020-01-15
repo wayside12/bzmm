@@ -15,14 +15,19 @@ class homeVC: UICollectionViewController {
     var refresher : UIRefreshControl!
     
     //size of page
-    var page : Int = 15
+    var page : Int = 12
     
     var uuidArray = [String]()
     var picArray = [PFFileObject]()
+    var objCount: Int32 = 0
+    var hasLoaded = false
     
     //default function
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //self.automaticallyAdjustsScrollViewInsets = false
+        self.collectionView.contentInsetAdjustmentBehavior = .never
         
         //always vertical scroll
         self.collectionView.alwaysBounceVertical = true
@@ -45,8 +50,15 @@ class homeVC: UICollectionViewController {
         //receive notification from uploadVC
         NotificationCenter.default.addObserver(self, selector: #selector(upload(sender:)), name: NSNotification.Name("uploaded"), object: nil)
         
+        //disable scroll when loading
+        collectionView.isScrollEnabled = false
+        
         //load post
         loadPosts()
+        
+        collectionView.isScrollEnabled = true
+        print("scroll enabled = \(collectionView.isScrollEnabled)")
+        
     }
     
     
@@ -95,7 +107,7 @@ class homeVC: UICollectionViewController {
                 }
                 print("objects count = \(objects?.count)")
                 self.collectionView.reloadData()
-                //DispatchQueue.main.async
+                
                 
             } else {
                 print(error?.localizedDescription)
@@ -103,6 +115,87 @@ class homeVC: UICollectionViewController {
         }
     }
     
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+//        print("scrollView.contentOffset.y = \(scrollView.contentOffset.y)")
+//        print("scrollView.contentSize.height = \(scrollView.contentSize.height)")
+//        print("self.view.frame.size.height = \(self.view.frame.size.height)")
+        
+        //print("is loaded = \(hasLoaded)")
+        
+        if scrollView.contentSize.height > 0 { //hack to avoid this call when loading
+            if scrollView.contentOffset.y >= scrollView.contentSize.height - self.view.frame.size.height {
+
+                if !hasLoaded {
+                    
+                    print("trying to load more...")
+                    self.loadmore()
+                    
+                }
+            }
+        }
+  
+    }
+ 
+   
+    
+    
+    func loadmore() {
+        
+        let query = PFQuery(className: "post")
+        query.whereKey("username", equalTo: PFUser.current()?.username!)
+        query.limit = page + 20
+        
+        //print("username: \(PFUser.current()?.username!)")
+        query.countObjectsInBackground(block: { (count: Int32, error: Error?) in
+            
+            //print("count = \(count)")
+            if error == nil {
+                print("count = \(count)")
+                self.objCount = count
+            }else {
+                print(error?.localizedDescription)
+            }
+        })
+        
+        
+        print("page = \(page) picarray count = \(picArray.count), objcount = \(objCount)")
+        
+        if page < objCount{
+            
+            page = page + 20
+            
+            //load more posts
+            let query = PFQuery(className: "post")
+            query.whereKey("username", equalTo: PFUser.current()?.username!)
+            query.limit = page
+            query.findObjectsInBackground { (objects:[PFObject]?, error:Error?) in
+                
+                if error == nil {
+                    
+                    //clean array
+                    self.picArray.removeAll(keepingCapacity: false)
+                    self.uuidArray.removeAll(keepingCapacity: false)
+                    
+                    for object in objects! {
+                        self.uuidArray.append(object.value(forKey: "uuid") as! String)
+                        self.picArray.append(object.value(forKey: "pic") as! PFFileObject)
+                    }
+                    print("loaded \(self.page)")
+                    
+                    
+                    self.collectionView.reloadData()
+                    self.hasLoaded = true
+                    
+                }else {
+                    print(error?.localizedDescription)
+                }
+            }
+            
+        }
+        
+    }
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
          return picArray.count
