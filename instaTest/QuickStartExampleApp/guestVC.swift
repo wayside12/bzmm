@@ -19,7 +19,10 @@ class guestVC: UICollectionViewController {
     //array to hold data from server
     var uuidArray = [String]()
     var picArray = [PFFileObject]()
-    
+   
+    var objCount: Int32 = 0
+    var hasLoaded = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -73,7 +76,7 @@ class guestVC: UICollectionViewController {
     func loadPosts() {
         
         let query = PFQuery(className: "post")
-        query.whereKey("username", equalTo: guestname.last)
+        query.whereKey("username", equalTo: guestname.last!)
         query.limit = 10
         query.findObjectsInBackground { (objects:[PFObject]?, error:Error?) in
             
@@ -92,6 +95,84 @@ class guestVC: UICollectionViewController {
             
         }
     }
+    
+    
+       override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+                    
+            //print("is loaded = \(hasLoaded)")
+            
+            if scrollView.contentSize.height > 0 { //hack to avoid this call when loading
+                if scrollView.contentOffset.y >= scrollView.contentSize.height - self.view.frame.size.height {
+
+                    if !hasLoaded {
+                        
+                        print("trying to load more...")
+                        self.loadmore()
+                        
+                    }
+                }
+            }
+      
+        }
+     
+       
+        
+        
+        func loadmore() {
+            
+            let query = PFQuery(className: "post")
+            query.whereKey("username", equalTo: guestname.last!)
+            query.limit = page + 20
+            
+            //print("username: \(PFUser.current()?.username!)")
+            query.countObjectsInBackground(block: { (count: Int32, error: Error?) in
+                
+                //print("count = \(count)")
+                if error == nil {
+                    
+                    self.objCount = count
+                }else {
+                    print(error?.localizedDescription)
+                }
+            })
+            
+            
+            //print("page = \(page) picarray count = \(picArray.count), objcount = \(objCount)")
+            
+            if page < objCount{
+                
+                page = page + 20
+                
+                //load more posts
+                let query = PFQuery(className: "post")
+                query.whereKey("username", equalTo: guestname.last!)
+                query.limit = page
+                query.findObjectsInBackground { (objects:[PFObject]?, error:Error?) in
+                    
+                    if error == nil {
+                        
+                        //clean array
+                        self.picArray.removeAll(keepingCapacity: false)
+                        self.uuidArray.removeAll(keepingCapacity: false)
+                        
+                        for object in objects! {
+                            self.uuidArray.append(object.value(forKey: "uuid") as! String)
+                            self.picArray.append(object.value(forKey: "pic") as! PFFileObject)
+                        }
+                        //print("loaded \(self.page)")
+                        
+                        
+                        self.collectionView.reloadData()
+                        self.hasLoaded = true
+                        
+                    }else {
+                        print(error?.localizedDescription)
+                    }
+                }
+                
+            }
+            
+        }
     
     //number of cells
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -122,7 +203,7 @@ class guestVC: UICollectionViewController {
         
         //STEP 1: load data to guest
         let infoQuery = PFQuery(className: "_User")
-        infoQuery.whereKey("username", equalTo: guestname.last)
+        infoQuery.whereKey("username", equalTo: guestname.last!)
         infoQuery.findObjectsInBackground { (objects:[PFObject]?, error:Error?) in
             if error == nil{
                 
@@ -158,7 +239,7 @@ class guestVC: UICollectionViewController {
          //show do current user follow the guest
         let searchQuery = PFQuery(className: "follow")
         searchQuery.whereKey("follower", equalTo: PFUser.current()?.username)
-        searchQuery.whereKey("following", equalTo: guestname.last)
+        searchQuery.whereKey("following", equalTo: guestname.last!)
         searchQuery.countObjectsInBackground { (count, error) in
             if error == nil{
                 if count == 0{
@@ -178,7 +259,7 @@ class guestVC: UICollectionViewController {
         //STEP 3: count the statistics
         //count posts
         let postQuery = PFQuery(className: "post")
-        postQuery.whereKey("username", equalTo: guestname.last)
+        postQuery.whereKey("username", equalTo: guestname.last!)
         postQuery.countObjectsInBackground { (count, error) in
             if error == nil{
                 header.posts.text = "\(count)"
@@ -189,7 +270,7 @@ class guestVC: UICollectionViewController {
         
         //count followers
         let followerQuery = PFQuery(className: "follow")
-        followerQuery.whereKey("following", equalTo: guestname.last)
+        followerQuery.whereKey("following", equalTo: guestname.last!)
         followerQuery.countObjectsInBackground { (count, error) in
             if error == nil{
                 header.followers.text = "\(count)"
@@ -200,7 +281,7 @@ class guestVC: UICollectionViewController {
         
         //count followings
         let followingQuery = PFQuery(className: "follow")
-        followingQuery.whereKey("follower", equalTo: guestname.last)
+        followingQuery.whereKey("follower", equalTo: guestname.last!)
         followingQuery.countObjectsInBackground { (count, error) in
             if error == nil{
                  header.followings.text = "\(count)"

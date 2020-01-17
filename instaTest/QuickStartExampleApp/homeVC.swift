@@ -25,9 +25,9 @@ class homeVC: UICollectionViewController {
     //default function
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //self.automaticallyAdjustsScrollViewInsets = false
-        self.collectionView.contentInsetAdjustmentBehavior = .never
+              
+        //self.collectionView.delegate = self
+        //self.collectionView.contentInsetAdjustmentBehavior = .never
         
         //always vertical scroll
         self.collectionView.alwaysBounceVertical = true
@@ -57,7 +57,7 @@ class homeVC: UICollectionViewController {
         loadPosts()
         
         collectionView.isScrollEnabled = true
-        print("scroll enabled = \(collectionView.isScrollEnabled)")
+        //print("scroll enabled = \(collectionView.isScrollEnabled)")
         
     }
     
@@ -105,7 +105,7 @@ class homeVC: UICollectionViewController {
                     self.picArray.append((object.object(forKey: "pic") as! PFFileObject))
                     
                 }
-                print("objects count = \(objects?.count)")
+                //print("objects count = \(objects?.count)")
                 self.collectionView.reloadData()
                 
                 
@@ -129,7 +129,7 @@ class homeVC: UICollectionViewController {
 
                 if !hasLoaded {
                     
-                    print("trying to load more...")
+                    //print("trying to load more...")
                     self.loadmore()
                     
                 }
@@ -150,17 +150,13 @@ class homeVC: UICollectionViewController {
         //print("username: \(PFUser.current()?.username!)")
         query.countObjectsInBackground(block: { (count: Int32, error: Error?) in
             
-            //print("count = \(count)")
             if error == nil {
-                print("count = \(count)")
                 self.objCount = count
             }else {
                 print(error?.localizedDescription)
             }
         })
         
-        
-        print("page = \(page) picarray count = \(picArray.count), objcount = \(objCount)")
         
         if page < objCount{
             
@@ -182,7 +178,7 @@ class homeVC: UICollectionViewController {
                         self.uuidArray.append(object.value(forKey: "uuid") as! String)
                         self.picArray.append(object.value(forKey: "pic") as! PFFileObject)
                     }
-                    print("loaded \(self.page)")
+                    //print("loaded \(self.page)")
                     
                     
                     self.collectionView.reloadData()
@@ -268,18 +264,21 @@ class homeVC: UICollectionViewController {
         //tap posts
         let postsTap = UITapGestureRecognizer(target: self, action: #selector(homeVC.postsTap))
         postsTap.numberOfTouchesRequired = 1
+        postsTap.cancelsTouchesInView = false
         header.posts.isUserInteractionEnabled = true
         header.posts.addGestureRecognizer(postsTap)
   
         //tap followers
         let followersTap = UITapGestureRecognizer(target: self, action: #selector(homeVC.followersTap))
         followersTap.numberOfTouchesRequired = 1
+        followersTap.cancelsTouchesInView = false
         header.followers.isUserInteractionEnabled = true
         header.followers.addGestureRecognizer(followersTap)
         
         //tap followings
         let followingsTap = UITapGestureRecognizer(target: self, action: #selector(homeVC.followingsTap))
         followingsTap.numberOfTouchesRequired = 1
+        followingsTap.cancelsTouchesInView = false
         header.followings.isUserInteractionEnabled = true
         header.followings.addGestureRecognizer(followingsTap)
   
@@ -325,6 +324,20 @@ class homeVC: UICollectionViewController {
         let signin = self.storyboard?.instantiateViewController(identifier: "signInVC") as! signInVC
         let appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = signin
+        
+    }
+    
+    //go post
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        //self.collectionView.isUserInteractionEnabled = true
+        
+        //add post uuid to postuuid var
+        postuuid.append(uuidArray[indexPath.row])
+        
+        //navigate to post view controller
+        let post = self.storyboard?.instantiateViewController(identifier: "postVC") as! postVC
+        self.navigationController?.pushViewController(post, animated: true)
         
     }
     
