@@ -117,22 +117,12 @@ class homeVC: UICollectionViewController {
     
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
-//        print("scrollView.contentOffset.y = \(scrollView.contentOffset.y)")
-//        print("scrollView.contentSize.height = \(scrollView.contentSize.height)")
-//        print("self.view.frame.size.height = \(self.view.frame.size.height)")
-        
-        //print("is loaded = \(hasLoaded)")
-        
+                  
         if scrollView.contentSize.height > 0 { //hack to avoid this call when loading
             if scrollView.contentOffset.y >= scrollView.contentSize.height - self.view.frame.size.height {
-
-                if !hasLoaded {
-                    
+             
                     //print("trying to load more...")
                     self.loadmore()
-                    
-                }
             }
         }
   
