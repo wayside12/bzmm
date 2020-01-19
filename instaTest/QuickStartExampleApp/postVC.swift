@@ -40,8 +40,8 @@ class postVC: UITableViewController {
         self.view.addGestureRecognizer(backSwipe)
         
         //dynamic cell height
-        //tableView.rowHeight = UITableView.automaticDimension
-        //tableView.estimatedRowHeight = 500
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 500
             
         //find post
         let postQuery = PFQuery(className: "post")
@@ -75,15 +75,12 @@ class postVC: UITableViewController {
                 print(error?.localizedDescription)
             }
         }
-        
-        
-        
     }
 
     @objc func back(sender: UIBarButtonItem){
         
         //push back
-        self.navigationController?.popToRootViewController(animated: true)
+        self.navigationController?.popViewController(animated: true)
         
         //clean comment uuid from last
         if !postuuid.isEmpty {
@@ -105,7 +102,7 @@ class postVC: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! postCell
         
         //connect objects with informaiton from server
-        cell.usernameBtn.setTitle(titleArray[indexPath.row], for: UIControl.State.normal)
+        cell.usernameBtn.setTitle(userArray[indexPath.row], for: UIControl.State.normal)
         cell.uuidLbl.text = uuidArray[indexPath.row]
         cell.titleLbl.text = titleArray[indexPath.row]
         cell.sizeToFit()
@@ -136,19 +133,19 @@ class postVC: UITableViewController {
             cell.dateLbl.text = "now"
         }
         if difference.second! > 0 && difference.minute! == 0{
-            cell.dateLbl.text = "\(difference.second)s"
+            cell.dateLbl.text = "\(difference.second ?? 99)s"
         }
         if difference.minute! > 0 && difference.hour! == 0 {
-            cell.dateLbl.text = "\(difference.minute)m"
+            cell.dateLbl.text = "\(difference.minute ?? 99)m"
         }
         if difference.hour! > 0 && difference.day == 0 {
-            cell.dateLbl.text = "\(difference.hour)h"
+            cell.dateLbl.text = "\(difference.hour ?? 99)h"
         }
         if difference.day! > 0 && difference.weekOfMonth! == 0 {
-            cell.dateLbl.text = "\(difference.day)d"
+            cell.dateLbl.text = "\(difference.day ?? 99)d"
         }
         if difference.weekOfMonth! > 0 {
-            cell.dateLbl.text = "\(difference.weekOfMonth)w"
+            cell.dateLbl.text = "\(difference.weekOfMonth ?? 99)w"
         }                
         return cell
     }

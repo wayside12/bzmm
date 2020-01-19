@@ -332,11 +332,14 @@ class homeVC: UICollectionViewController {
         
         //self.collectionView.isUserInteractionEnabled = true
         
+        
+        print("clicked the post from homeVC")
         //add post uuid to postuuid var
         postuuid.append(uuidArray[indexPath.row])
         
         //navigate to post view controller
         let post = self.storyboard?.instantiateViewController(identifier: "postVC") as! postVC
+       
         self.navigationController?.pushViewController(post, animated: true)
         
     }

@@ -23,14 +23,22 @@ class guestVC: UICollectionViewController {
     var objCount: Int32 = 0
     var hasLoaded = false
 
+    //default function
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.collectionView.delegate = self
+        self.collectionView.dataSource = self
+        
+        self.collectionView.allowsMultipleSelection = false
+        self.collectionView.allowsSelection = true
+        
         //allow vertical control
         self.collectionView.alwaysBounceVertical = true
         
         //top title
         self.navigationItem.title = guestname.last
+        
         
         //new back button (declare our custom back button instead)
         self.navigationItem.hidesBackButton = true
@@ -39,6 +47,7 @@ class guestVC: UICollectionViewController {
         
         //swipe to go back
         let backSwipe = UISwipeGestureRecognizer(target: self, action: #selector(back(sender:)))
+        backSwipe.cancelsTouchesInView = false
         backSwipe.direction = UISwipeGestureRecognizer.Direction.right
         self.view.addGestureRecognizer(backSwipe)
 
@@ -49,14 +58,25 @@ class guestVC: UICollectionViewController {
         refresher.addTarget(self, action: #selector(refresh(sender:)), for: UIControl.Event.valueChanged)
         collectionView.refreshControl = refresher
         
+        //disable scroll when loading
+        collectionView.isScrollEnabled = false
+        
         //load posts
         loadPosts()
+        hasLoaded = false
+        
+        print(" cancel touches ? \(self.collectionView.canCancelContentTouches)")
+        print("user interaction enabled? \(self.collectionView.isUserInteractionEnabled)")
+        collectionView.isScrollEnabled = true
         
     }
 
     @objc func refresh(sender:AnyObject){
         collectionView.reloadData()
-        refresher.endRefreshing()  //guest view stuck refreshing
+        
+        //reload data info
+        print("refresh data  (guest page)")
+        sender.endRefreshing()  //guest view stuck refreshing
         
     }
 
@@ -75,6 +95,7 @@ class guestVC: UICollectionViewController {
     //posts loading function
     func loadPosts() {
         
+        print("loading.. guest ")
         let query = PFQuery(className: "post")
         query.whereKey("username", equalTo: guestname.last!)
         query.limit = 10
@@ -86,7 +107,9 @@ class guestVC: UICollectionViewController {
                     //hold found info in arrays
                     self.uuidArray.append(object.value(forKey: "uuid") as! String)
                     self.picArray.append(object.value(forKey: "pic") as! PFFileObject)
+                    print("object: \(object.value(forKey: "uuid"))")
                 }
+                
                 self.collectionView.reloadData()
                 
             }else{
@@ -115,11 +138,14 @@ class guestVC: UICollectionViewController {
       
         }
      
-       
+
         
         
         func loadmore() {
             
+            print("guest last username = \(guestname.last ?? "nil")")
+            
+            //check and make sure guestname is not empty
             let query = PFQuery(className: "post")
             query.whereKey("username", equalTo: guestname.last!)
             query.limit = page + 20
@@ -127,7 +153,7 @@ class guestVC: UICollectionViewController {
             //print("username: \(PFUser.current()?.username!)")
             query.countObjectsInBackground(block: { (count: Int32, error: Error?) in
                 
-                //print("count = \(count)")
+                print("count = \(count)")
                 if error == nil {
                     
                     self.objCount = count
@@ -160,8 +186,7 @@ class guestVC: UICollectionViewController {
                             self.picArray.append(object.value(forKey: "pic") as! PFFileObject)
                         }
                         //print("loaded \(self.page)")
-                        
-                        
+                    
                         self.collectionView.reloadData()
                         self.hasLoaded = true
                         
@@ -289,37 +314,38 @@ class guestVC: UICollectionViewController {
                  print(error?.localizedDescription)
              }
         }
-        
+
         //STEP 4: implement tap gestures
         //tap to post label
         let postTap = UITapGestureRecognizer(target: self, action: #selector(guestVC.postTap))
         postTap.numberOfTapsRequired = 1
+        postTap.cancelsTouchesInView = false
         header.posts.isUserInteractionEnabled = true
         header.posts.addGestureRecognizer(postTap)
         
         //tap to follower label
         let followerTap = UITapGestureRecognizer(target: self, action: #selector(guestVC.followerTap))
         followerTap.numberOfTapsRequired = 1
+        followerTap.cancelsTouchesInView = false
         header.followers.isUserInteractionEnabled = true
         header.followers.addGestureRecognizer(followerTap)
         
         //tap to following label
         let followingTap = UITapGestureRecognizer(target: self, action: #selector(guestVC.followingTap))
         followerTap.numberOfTapsRequired = 1
+        followerTap.cancelsTouchesInView = false
         header.followings.isUserInteractionEnabled = true
         header.addGestureRecognizer(followingTap)
-        
+
         return header
     }
-    
+  
     //tapped posts label
     @objc func postTap(){
         if !picArray.isEmpty{
             let index = NSIndexPath(item: 0, section: 0)
             self.collectionView.scrollToItem(at: index as IndexPath, at: UICollectionView.ScrollPosition.top, animated: true)
         }
-        
-        
     }
     
     //tapped follower label
@@ -347,6 +373,24 @@ class guestVC: UICollectionViewController {
         
     }
 
+  
+    //go post
     
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        print("clicked the post from guestVC")
+        //add post uuid to postuuid var
+        postuuid.append(uuidArray[indexPath.row])
+        
+        //navigate to post view controller
+        let post = self.storyboard?.instantiateViewController(identifier: "postVC") as! postVC
+        self.navigationController?.pushViewController(post, animated: true)
+        
+    }
 }
 
+extension guestVC: UIGestureRecognizerDelegate{
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        true
+    }
+}
