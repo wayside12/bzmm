@@ -83,9 +83,7 @@ class guestVC2: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        //print("index path row: \(indexPath.row)")
-        //print("pic array count: \(picArray.count)")
-    
+     
         if indexPath.row == self.picArray.count - 1 {
 
             print("load more... guest postcount = \(self.postCount)")
@@ -114,15 +112,11 @@ class guestVC2: UICollectionViewController {
             query.findObjectsInBackground { (objects:[PFObject]?, error:Error?) in
                 
                 if error == nil {
-                    
-                    //clean array
-                    //self.picArray.removeAll(keepingCapacity: false)
-                    //self.uuidArray.removeAll(keepingCapacity: false)
-                    
+                  
                     for object in objects! {
                         self.uuidArray.append(object.value(forKey: "uuid") as! String)
                         self.picArray.append(object.value(forKey: "pic") as! PFFileObject)
-                        print("append.. \(object.value(forKey: "uuid") as! String)")
+                        //print("append.. \(object.value(forKey: "uuid") as! String)")
                     }
                     
                     print("appending to picArray \(self.picArray.count)  objcount=\(objects?.count ?? 0)")

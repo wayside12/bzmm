@@ -16,11 +16,12 @@ class homeVC: UICollectionViewController {
     
     //size of page
     var page : Int = 12
+    var postCount: Int32 = 0
     
     var uuidArray = [String]()
     var picArray = [PFFileObject]()
     var objCount: Int32 = 0
-    var hasLoaded = false
+    
     
     //default function
     override func viewDidLoad() {
@@ -28,6 +29,9 @@ class homeVC: UICollectionViewController {
               
         //self.collectionView.delegate = self
         //self.collectionView.contentInsetAdjustmentBehavior = .never
+        
+        //count number of pics
+        countNumPics()
         
         //always vertical scroll
         self.collectionView.alwaysBounceVertical = true
@@ -62,6 +66,21 @@ class homeVC: UICollectionViewController {
     }
     
     
+    func countNumPics(){
+        let query = PFQuery(className: "post")
+        query.whereKey("username", equalTo: PFUser.current()?.username!)
+        
+        query.countObjectsInBackground(block: { (count: Int32, error: Error?) in
+           
+            print("total count = \(count)")
+            if error == nil {
+                self.postCount = count
+                self.collectionView.reloadData()
+            }else {
+                print(error?.localizedDescription)
+            }
+        })
+     }
     
     //refreshing func
     @objc func refresh(sender:AnyObject) {
@@ -115,7 +134,7 @@ class homeVC: UICollectionViewController {
         }
     }
     
-    
+    /*
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
                   
         if scrollView.contentSize.height > 0 { //hack to avoid this call when loading
@@ -126,62 +145,57 @@ class homeVC: UICollectionViewController {
             }
         }
   
-    }
+    }*/
  
-   
+   override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
     
+       if indexPath.row == self.picArray.count - 1 {
+
+           print("load more... guest postcount = \(self.postCount)")
+           //use pagination
+           loadmore()
+           
+       }
+   }
     
     func loadmore() {
         
-        let query = PFQuery(className: "post")
-        query.whereKey("username", equalTo: PFUser.current()?.username!)
-        query.limit = page + 20
+        var curCount: Int = 0
         
-        //print("username: \(PFUser.current()?.username!)")
-        query.countObjectsInBackground(block: { (count: Int32, error: Error?) in
-            
-            if error == nil {
-                self.objCount = count
-            }else {
-                print(error?.localizedDescription)
-            }
-        })
-        
-        
-        if page < objCount{
-            
-            page = page + 20
-            
+        if page < postCount {
+            curCount = page
+            print("before:  page = \(page) ")
+            page = (page+20 > self.postCount) ? Int(self.postCount) : (page+20)
+            print("after:  page = \(page) ")
+          
             //load more posts
             let query = PFQuery(className: "post")
-            query.whereKey("username", equalTo: PFUser.current()?.username!)
-            query.limit = page
+            query.whereKey("username", equalTo: PFUser.current()?.username)
+            query.skip = curCount
+            query.limit = 20
             query.findObjectsInBackground { (objects:[PFObject]?, error:Error?) in
                 
                 if error == nil {
-                    
-                    //clean array
-                    self.picArray.removeAll(keepingCapacity: false)
-                    self.uuidArray.removeAll(keepingCapacity: false)
-                    
+                                        
                     for object in objects! {
                         self.uuidArray.append(object.value(forKey: "uuid") as! String)
                         self.picArray.append(object.value(forKey: "pic") as! PFFileObject)
+                        //print("append.. \(object.value(forKey: "uuid") as! String)")
                     }
-                    //print("loaded \(self.page)")
                     
-                    
-                    self.collectionView.reloadData()
-                    self.hasLoaded = true
-                    
-                }else {
-                    print(error?.localizedDescription)
+                    print("appending to picArray \(self.picArray.count)  objcount=\(objects?.count ?? 0)")
+                        self.collectionView.reloadData()
+                        
+                    }else {
+                        print(error?.localizedDescription)
                 }
             }
             
         }
         
     }
+    
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
          return picArray.count
