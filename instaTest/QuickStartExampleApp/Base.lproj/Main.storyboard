@@ -252,10 +252,10 @@
             </objects>
             <point key="canvasLocation" x="484" y="28"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--TabbarVC-->
         <scene sceneID="Nrl-6k-vfC">
             <objects>
-                <tabBarController storyboardIdentifier="tabBar" id="6Ox-y2-KGP" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBar" id="6Ox-y2-KGP" customClass="tabbarVC" customModule="QuickStartExampleApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aI2-G3-OoR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -589,7 +589,7 @@
         <!--Item-->
         <scene sceneID="tkH-xp-SUC">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fi1-7g-P0l" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fi1-7g-P0l" customClass="navVC" customModule="QuickStartExampleApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="NBD-aQ-GTg"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4Wm-vm-zuV">
@@ -761,10 +761,10 @@
             </objects>
             <point key="canvasLocation" x="4469.6000000000004" y="109.29535232383809"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--NavVC-->
         <scene sceneID="OoF-Th-UEf">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rLf-5l-pqt" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rLf-5l-pqt" customClass="navVC" customModule="QuickStartExampleApp" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rPH-Qv-EhP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
@@ -782,7 +782,7 @@
         <!--Item-->
         <scene sceneID="dli-te-4wZ">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Eo8-fH-Jch" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Eo8-fH-Jch" customClass="navVC" customModule="QuickStartExampleApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="uLF-Xk-fUz"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="u34-gV-n7C">
