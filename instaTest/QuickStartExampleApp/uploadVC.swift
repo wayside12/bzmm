@@ -41,10 +41,16 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         picTap.numberOfTouchesRequired = 1
         self.picImg.isUserInteractionEnabled = true
         self.picImg.addGestureRecognizer(picTap)
-        
-        
+             
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        //call alignment function
         alignment()
-     
+    }
+    
+    @objc func hideKeyboardTap(sender:Any) {
+        self.view.endEditing(true)        
     }
     
     //func to call pickerViewController
@@ -58,7 +64,10 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         
     }
     
+    //TODO: zoom function not called after pic was loaded
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
         picImg.image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
         self.dismiss(animated: true, completion: nil)
         
@@ -72,18 +81,20 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         //implement the second tap to zoom in/out
         let zoomTap = UITapGestureRecognizer(target: self, action: #selector(zoomimg(sender:)))
         zoomTap.numberOfTouchesRequired = 1
-        self.view.isUserInteractionEnabled = true
-        self.view.addGestureRecognizer(zoomTap)
+        picImg.isUserInteractionEnabled = true
+        picImg.addGestureRecognizer(zoomTap)
         
     }
     
     @objc func zoomimg(sender:Any){
         
+        print("zooming ... ")
         //define frame of unzoomed image
-        let unzoomed = CGRect(x: 10, y: self.navigationController!.navigationBar.frame.size.height + 35, width: self.view.frame.size.width / 4.5, height: self.view.frame.size.width / 4.5)
+        let unzoomed = CGRect(x: 15, y: 15, width: self.view.frame.size.width / 4.5, height: self.view.frame.size.width / 4.5)
         
         //define frame of zoomed image
-        let zoomed = CGRect(x: 0, y: self.view.center.y - self.view.center.x, width: self.view.frame.size.width, height: self.view.frame.size.width)
+        //let zoomed = CGRect(x: 0, y: self.view.center.y - self.tabBarController!.tabBar.frame.size.height, width: self.view.frame.size.width, height: self.view.frame.size.width)
+        let zoomed = CGRect(x: 0, y: self.view.center.y - self.view.center.x*1.5, width: self.view.frame.size.width, height: self.view.frame.size.width)
         if picImg.frame == unzoomed {
             UIView.animate(withDuration: 0.3) {
                 self.picImg.frame = zoomed
@@ -113,19 +124,16 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     }
     
     
-    @objc func hideKeyboardTap(sender:Any) {
-        self.view.endEditing(true)
-        
-        
-    }
-    
+
     func alignment() {
         
         let width = self.view.frame.size.width
-        picImg.frame = CGRect(x: 10, y: self.navigationController!.navigationBar.frame.size.height + 35, width: width / 4.5, height: width / 4.5)
-        titleTxt.frame = CGRect(x: picImg.frame.size.width + 25, y: picImg.frame.origin.y, width: width - picImg.frame.size.width - 40, height: picImg.frame.size.height)
-        publishBtn.frame = CGRect(x: 0, y: self.tabBarController!.tabBar.frame.origin.y - width / 8, width: width, height: width/8)
-        removeBtn.frame = CGRect(x: picImg.frame.origin.x, y: picImg.frame.origin.y + picImg.frame.size.height + 15, width: picImg.frame.size.width, height: 30)
+        let height = self.view.frame.size.height
+        
+        picImg.frame = CGRect(x: 15, y: 15, width: width / 4.5, height: width / 4.5)
+        titleTxt.frame = CGRect(x: picImg.frame.size.width + 25, y: picImg.frame.origin.y, width: width / 1.488, height: picImg.frame.size.height)
+        publishBtn.frame = CGRect(x: 0, y: height/1.09, width: width, height: width/8)
+        removeBtn.frame = CGRect(x: picImg.frame.origin.x, y: picImg.frame.origin.y + picImg.frame.size.height, width: picImg.frame.size.width, height: 20)
     }
     
     //clicked publish button
