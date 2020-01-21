@@ -25,7 +25,6 @@ class postVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print("postuuid count = \(postuuid.count)")
         //title label at the top
         self.navigationItem.title = "PHOTO"
         
@@ -38,6 +37,9 @@ class postVC: UITableViewController {
         let backSwipe = UISwipeGestureRecognizer(target: self, action: #selector(back(sender:)))
         backSwipe.direction = .right
         self.view.addGestureRecognizer(backSwipe)
+        
+        //receive notification
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh(sender:)), name: NSNotification.Name("liked"), object: nil)
         
         //dynamic cell height
         tableView.rowHeight = UITableView.automaticDimension
@@ -88,7 +90,10 @@ class postVC: UITableViewController {
         }
         
     }
-    
+    @objc func refresh(sender: Any) {
+        print("refreshing...")
+        self.tableView.reloadData()
+    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
@@ -146,8 +151,36 @@ class postVC: UITableViewController {
         }
         if difference.weekOfMonth! > 0 {
             cell.dateLbl.text = "\(difference.weekOfMonth ?? 99)w"
-        }                
+        }
+        
+        
+        //display like button image depending on user likes it or not
+        let didLike = PFQuery(className: "likes")
+        didLike.whereKey("by", equalTo: PFUser.current()!.username!)
+        didLike.whereKey("to", equalTo: cell.uuidLbl.text!)
+        didLike.countObjectsInBackground { (count:Int32, error:Error?) in
+          
+            if count == 0{
+                cell.likeBtn.setTitle("unlike", for: UIControl.State.normal)
+                //cell.likeBtn.setImage(UIImage(named: "dislike.png"), for:UIControl.State.normal)
+                cell.likeBtn.setBackgroundImage(UIImage(named: "dislike.png"), for:UIControl.State.normal)
+            }else{
+                cell.likeBtn.setTitle("like", for: UIControl.State.normal)
+                //cell.likeBtn.setImage(UIImage(named: "like.png"), for: UIControl.State.normal)
+                cell.likeBtn.setBackgroundImage(UIImage(named: "like.png"), for: UIControl.State.normal)
+            }
+        }
+
+        //count total likes
+        let countLikes = PFQuery(className: "likes")
+        countLikes.whereKey("to", equalTo: cell.uuidLbl.text!)
+        countLikes.countObjectsInBackground { (count:Int32, error:Error?) in
+            cell.likeLbl.text = "\(count)"
+        }
+        
         return cell
     }
 
+    
+    
 }

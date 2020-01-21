@@ -586,11 +586,11 @@
             </objects>
             <point key="canvasLocation" x="5180" y="-674"/>
         </scene>
-        <!--Item-->
+        <!--Home-->
         <scene sceneID="tkH-xp-SUC">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fi1-7g-P0l" customClass="navVC" customModule="QuickStartExampleApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="NBD-aQ-GTg"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="person.circle" catalog="system" id="NBD-aQ-GTg"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4Wm-vm-zuV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -707,9 +707,15 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Omo-Ij-4Tt">
-                                            <rect key="frame" x="15" y="400" width="30" height="30"/>
+                                            <rect key="frame" x="15" y="405" width="30" height="24"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Button" image="dislike.png"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <state key="normal" title="like">
+                                                <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="likeBtn_click:" destination="iTe-Ir-u4v" eventType="touchUpInside" id="9r5-Rg-HTK"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Czw-NF-7P6">
                                             <rect key="frame" x="114" y="394" width="30" height="30"/>
@@ -779,11 +785,11 @@
             </objects>
             <point key="canvasLocation" x="4455" y="-674"/>
         </scene>
-        <!--Item-->
+        <!--Upload-->
         <scene sceneID="dli-te-4wZ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Eo8-fH-Jch" customClass="navVC" customModule="QuickStartExampleApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="uLF-Xk-fUz"/>
+                    <tabBarItem key="tabBarItem" title="Upload" image="square.and.pencil" catalog="system" id="uLF-Xk-fUz"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="u34-gV-n7C">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -950,9 +956,10 @@
     </scenes>
     <resources>
         <image name="comment.png" width="154" height="154"/>
-        <image name="dislike.png" width="980" height="920"/>
         <image name="more.png" width="326.2301025390625" height="326.2301025390625"/>
+        <image name="person.circle" catalog="system" width="64" height="60"/>
         <image name="postbg.jpeg" width="225" height="225"/>
         <image name="ppl.png" width="512" height="512"/>
+        <image name="square.and.pencil" catalog="system" width="64" height="58"/>
     </resources>
 </document>

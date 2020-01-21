@@ -333,11 +333,8 @@ class homeVC: UICollectionViewController {
     
     //go post
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        //self.collectionView.isUserInteractionEnabled = true
-        
-        
-        print("clicked the post from homeVC")
+                
+        //print("clicked the post from homeVC")
         //add post uuid to postuuid var
         postuuid.append(uuidArray[indexPath.row])
         
@@ -347,6 +344,5 @@ class homeVC: UICollectionViewController {
         self.navigationController?.pushViewController(post, animated: true)
         
     }
-    
-    
+        
 }

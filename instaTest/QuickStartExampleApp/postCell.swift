@@ -35,6 +35,8 @@ class postCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        //likeBtn.setTitleColor(UIColor.clear, for: UIControl.State.normal)
+        
         let width = UIScreen.main.bounds.width
         
         //allow constraints
@@ -74,11 +76,60 @@ class postCell: UITableViewCell {
         
         avaImg.layer.cornerRadius = avaImg.frame.size.width/2
         avaImg.clipsToBounds = true
-        
-        
-        
+         
     }
 
+    @IBAction func likeBtn_click(_ sender: UIButton) {
+    
+         //retrieve title of button
+         let title = sender.title(for: .normal)
+             
+             if title == "unlike" {
+               
+                let object = PFObject(className: "likes")
+                object["to"] = uuidLbl.text
+                object["by"] = PFUser.current()?.username
+                object.saveInBackground { (success, error) in
+                    if success {
+                        print("liked")
+                        self.likeLbl.text = "like"
+                        //self.likeBtn.setImage(UIImage(named: "like.png"), for: UIControl.State.normal)
+                        self.likeBtn.setBackgroundImage(UIImage(named: "like.png"), for: UIControl.State.normal)
+                        
+                        //send notification to refresh tableview
+                        NotificationCenter.default.post(name: NSNotification.Name("liked"), object: nil)
+                    }
+                }
+                 
+             }else {
+                
+                let query = PFQuery(className: "likes")
+                query.whereKey("to", equalTo: uuidLbl.text!)
+                query.whereKey("by", equalTo: PFUser.current()!.username!)
+                query.findObjectsInBackground { (objects:[PFObject]?, error:Error?) in
+                    
+                    if error == nil{
+                        for object in objects! {
+                            object.deleteInBackground { (success, error) in
+                                if success {
+                                    print("disliked")
+                                    self.likeLbl.text = "unlike"
+                                    self.likeBtn.setBackgroundImage(UIImage(named: "dislike.png"), for: UIControl.State.normal)
+                                    //self.likeBtn.setImage(UIImage(named: "like.png"), for: UIControl.State.normal)
+                                    //send notification to refresh
+                                    NotificationCenter.default.post(name: NSNotification.Name("liked"), object: nil)
+
+                                }
+                            }
+                        }
+                        
+                    }
+                }
+                 
+             }
+             
+    }
+    
     
 
 }
