@@ -59,7 +59,7 @@ class postCell: UITableViewCell {
         let pictureWidth = width - 20
         
         //constraints
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-5-[ava(30)]-10-[pic(\(pictureWidth))]-5-[like(30)]", options: [], metrics: nil, views: ["ava": avaImg, "pic": picImg, "like": likeBtn]))
+        self.contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-5-[ava(30)]-10-[pic(\(pictureWidth))]-5-[like(20)]", options: [], metrics: nil, views: ["ava": avaImg, "pic": picImg, "like": likeBtn]))
         self.contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-5-[username]", options: [], metrics: nil, views: ["username" : usernameBtn]))
         self.contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-5-[date]", options: [], metrics: nil, views: ["date" : dateLbl]))
         self.contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[like]-5-[title]-5-|", options: [], metrics: nil, views: ["like": likeBtn, "title": titleLbl]))
@@ -93,9 +93,7 @@ class postCell: UITableViewCell {
                     if success {
                         print("liked")
                         self.likeLbl.text = "like"
-                        //self.likeBtn.setImage(UIImage(named: "like.png"), for: UIControl.State.normal)
-                        self.likeBtn.setBackgroundImage(UIImage(named: "like.png"), for: UIControl.State.normal)
-                        
+                        self.likeBtn.setBackgroundImage(UIImage(named: "like_s.png"), for: UIControl.State.normal)
                         //send notification to refresh tableview
                         NotificationCenter.default.post(name: NSNotification.Name("liked"), object: nil)
                     }
@@ -114,8 +112,8 @@ class postCell: UITableViewCell {
                                 if success {
                                     print("disliked")
                                     self.likeLbl.text = "unlike"
-                                    self.likeBtn.setBackgroundImage(UIImage(named: "dislike.png"), for: UIControl.State.normal)
-                                    //self.likeBtn.setImage(UIImage(named: "like.png"), for: UIControl.State.normal)
+                                    self.likeBtn.setBackgroundImage(UIImage(named: "dislike_s.png"), for: UIControl.State.normal)
+                                    
                                     //send notification to refresh
                                     NotificationCenter.default.post(name: NSNotification.Name("liked"), object: nil)
 

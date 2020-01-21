@@ -23,8 +23,8 @@
 		BC4486BC23CF9EA900AB2174 /* postCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4486BB23CF9EA900AB2174 /* postCell.swift */; };
 		BC4486C223D3705F00AB2174 /* comment.png in Resources */ = {isa = PBXBuildFile; fileRef = BC4486BE23D3705D00AB2174 /* comment.png */; };
 		BC4486C423D3705F00AB2174 /* more.png in Resources */ = {isa = PBXBuildFile; fileRef = BC4486C023D3705E00AB2174 /* more.png */; };
-		BC4AB4E323D783780007C5A1 /* like.png in Resources */ = {isa = PBXBuildFile; fileRef = BC4AB4E123D783780007C5A1 /* like.png */; };
-		BC4AB4E423D783790007C5A1 /* dislike.png in Resources */ = {isa = PBXBuildFile; fileRef = BC4AB4E223D783780007C5A1 /* dislike.png */; };
+		BC4AB4E723D78C5F0007C5A1 /* like_s.png in Resources */ = {isa = PBXBuildFile; fileRef = BC4AB4E523D78C5F0007C5A1 /* like_s.png */; };
+		BC4AB4E823D78C5F0007C5A1 /* dislike_s.png in Resources */ = {isa = PBXBuildFile; fileRef = BC4AB4E623D78C5F0007C5A1 /* dislike_s.png */; };
 		BC57783123BBC07A0089D723 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC57782F23BBC07A0089D723 /* Bolts.framework */; };
 		BC57783223BBC07A0089D723 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC57783023BBC07A0089D723 /* Parse.framework */; };
 		BC57783423BBC12C0089D723 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC57783323BBC12C0089D723 /* AudioToolbox.framework */; };
@@ -106,8 +106,8 @@
 		BC4486BB23CF9EA900AB2174 /* postCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = postCell.swift; sourceTree = "<group>"; };
 		BC4486BE23D3705D00AB2174 /* comment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comment.png; sourceTree = "<group>"; };
 		BC4486C023D3705E00AB2174 /* more.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = more.png; sourceTree = "<group>"; };
-		BC4AB4E123D783780007C5A1 /* like.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = like.png; sourceTree = "<group>"; };
-		BC4AB4E223D783780007C5A1 /* dislike.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dislike.png; path = ../../../../../Downloads/dislike.png; sourceTree = "<group>"; };
+		BC4AB4E523D78C5F0007C5A1 /* like_s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = like_s.png; sourceTree = "<group>"; };
+		BC4AB4E623D78C5F0007C5A1 /* dislike_s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dislike_s.png; sourceTree = "<group>"; };
 		BC57782F23BBC07A0089D723 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		BC57783023BBC07A0089D723 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		BC57783323BBC12C0089D723 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -211,8 +211,8 @@
 				327DD6B41FB3AA49008DADC2 /* Assets.xcassets */,
 				327DD6B91FB3AA49008DADC2 /* Info.plist */,
 				327DD6B61FB3AA49008DADC2 /* LaunchScreen.storyboard */,
-				BC4AB4E223D783780007C5A1 /* dislike.png */,
-				BC4AB4E123D783780007C5A1 /* like.png */,
+				BC4AB4E623D78C5F0007C5A1 /* dislike_s.png */,
+				BC4AB4E523D78C5F0007C5A1 /* like_s.png */,
 				BC4486BE23D3705D00AB2174 /* comment.png */,
 				BC4486C023D3705E00AB2174 /* more.png */,
 				BCF3B1FB23CCF08900C5AE35 /* postbg.jpeg */,
@@ -409,17 +409,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				327DD6B81FB3AA49008DADC2 /* LaunchScreen.storyboard in Resources */,
+				BC4AB4E823D78C5F0007C5A1 /* dislike_s.png in Resources */,
 				BC61367A23BBF4B900A79A18 /* ppl.png in Resources */,
 				BC4486C423D3705F00AB2174 /* more.png in Resources */,
-				BC4AB4E423D783790007C5A1 /* dislike.png in Resources */,
 				BC61367D23C173D700A79A18 /* Pacifico.ttf in Resources */,
 				327DD6B51FB3AA49008DADC2 /* Assets.xcassets in Resources */,
 				BC5BE59123BA69410051A1FE /* color blocks1.png in Resources */,
 				327DD6B31FB3AA49008DADC2 /* Main.storyboard in Resources */,
 				BC4486C223D3705F00AB2174 /* comment.png in Resources */,
+				BC4AB4E723D78C5F0007C5A1 /* like_s.png in Resources */,
 				BCF3B1FC23CCF08900C5AE35 /* postbg.jpeg in Resources */,
 				BC61368123C1780B00A79A18 /* bg.jpg in Resources */,
-				BC4AB4E323D783780007C5A1 /* like.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

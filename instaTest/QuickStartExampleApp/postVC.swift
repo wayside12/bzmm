@@ -162,12 +162,10 @@ class postVC: UITableViewController {
           
             if count == 0{
                 cell.likeBtn.setTitle("unlike", for: UIControl.State.normal)
-                //cell.likeBtn.setImage(UIImage(named: "dislike.png"), for:UIControl.State.normal)
-                cell.likeBtn.setBackgroundImage(UIImage(named: "dislike.png"), for:UIControl.State.normal)
+                cell.likeBtn.setBackgroundImage(UIImage(named: "dislike_s.png"), for:UIControl.State.normal)
             }else{
                 cell.likeBtn.setTitle("like", for: UIControl.State.normal)
-                //cell.likeBtn.setImage(UIImage(named: "like.png"), for: UIControl.State.normal)
-                cell.likeBtn.setBackgroundImage(UIImage(named: "like.png"), for: UIControl.State.normal)
+                cell.likeBtn.setBackgroundImage(UIImage(named: "like_s.png"), for: UIControl.State.normal)
             }
         }
 
