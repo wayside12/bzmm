@@ -37,6 +37,14 @@ class postCell: UITableViewCell {
         
         //likeBtn.setTitleColor(UIColor.clear, for: UIControl.State.normal)
         
+        //TODO: double tap not working, single tap works
+        //double tap to like:
+        let likeTap = UITapGestureRecognizer(target: self, action: #selector(liketap))
+        likeTap.numberOfTouchesRequired = 1
+        picImg.isUserInteractionEnabled = true
+        picImg.addGestureRecognizer(likeTap)
+        
+        
         let width = UIScreen.main.bounds.width
         
         //allow constraints
@@ -79,53 +87,87 @@ class postCell: UITableViewCell {
          
     }
 
+    @objc func liketap() {
+        print("double tapped..")
+        
+        //create a large likc pic
+        let likePic = UIImageView(image: UIImage(named: "dislike_s.png"))
+        likePic.frame.size.width = picImg.frame.size.width / 1.5
+        likePic.frame.size.height = picImg.frame.size.height / 1.5
+        likePic.center = picImg.center
+        likePic.alpha = 1
+        self.addSubview(likePic)
+        
+        UIView.animate(withDuration: 0.4) {
+            likePic.alpha = 0.5
+            likePic.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        }
+        
+        //declare title of button
+        let title = likeBtn.title(for: UIControl.State.normal)
+        if title == "unlike" {
+            let object = PFObject(className: "likes")
+            object["to"] = uuidLbl.text
+            object["by"] = PFUser.current()?.username
+            object.saveInBackground { (success, error) in
+                if success {
+                    print("liked")
+                    self.likeLbl.text = "like"
+                    self.likeBtn.setBackgroundImage(UIImage(named: "like_s.png"), for: UIControl.State.normal)
+                    //send notification to refresh tableview
+                    NotificationCenter.default.post(name: NSNotification.Name("liked"), object: nil)
+                }
+            }
+        }
+    }
+    
+    
     @IBAction func likeBtn_click(_ sender: UIButton) {
     
          //retrieve title of button
          let title = sender.title(for: .normal)
              
-             if title == "unlike" {
-               
-                let object = PFObject(className: "likes")
-                object["to"] = uuidLbl.text
-                object["by"] = PFUser.current()?.username
-                object.saveInBackground { (success, error) in
-                    if success {
-                        print("liked")
-                        self.likeLbl.text = "like"
-                        self.likeBtn.setBackgroundImage(UIImage(named: "like_s.png"), for: UIControl.State.normal)
-                        //send notification to refresh tableview
-                        NotificationCenter.default.post(name: NSNotification.Name("liked"), object: nil)
-                    }
+         if title == "unlike" {
+           
+            let object = PFObject(className: "likes")
+            object["to"] = uuidLbl.text
+            object["by"] = PFUser.current()?.username
+            object.saveInBackground { (success, error) in
+                if success {
+                    print("liked")
+                    self.likeLbl.text = "like"
+                    self.likeBtn.setBackgroundImage(UIImage(named: "like_s.png"), for: UIControl.State.normal)
+                    //send notification to refresh tableview
+                    NotificationCenter.default.post(name: NSNotification.Name("liked"), object: nil)
                 }
-                 
-             }else {
+            }
+             
+         }else {
+            
+            let query = PFQuery(className: "likes")
+            query.whereKey("to", equalTo: uuidLbl.text!)
+            query.whereKey("by", equalTo: PFUser.current()!.username!)
+            query.findObjectsInBackground { (objects:[PFObject]?, error:Error?) in
                 
-                let query = PFQuery(className: "likes")
-                query.whereKey("to", equalTo: uuidLbl.text!)
-                query.whereKey("by", equalTo: PFUser.current()!.username!)
-                query.findObjectsInBackground { (objects:[PFObject]?, error:Error?) in
-                    
-                    if error == nil{
-                        for object in objects! {
-                            object.deleteInBackground { (success, error) in
-                                if success {
-                                    print("disliked")
-                                    self.likeLbl.text = "unlike"
-                                    self.likeBtn.setBackgroundImage(UIImage(named: "dislike_s.png"), for: UIControl.State.normal)
-                                    
-                                    //send notification to refresh
-                                    NotificationCenter.default.post(name: NSNotification.Name("liked"), object: nil)
+                if error == nil{
+                    for object in objects! {
+                        object.deleteInBackground { (success, error) in
+                            if success {
+                                print("disliked")
+                                self.likeLbl.text = "unlike"
+                                self.likeBtn.setBackgroundImage(UIImage(named: "dislike_s.png"), for: UIControl.State.normal)
+                                
+                                //send notification to refresh
+                                NotificationCenter.default.post(name: NSNotification.Name("liked"), object: nil)
 
-                                }
                             }
                         }
-                        
                     }
+                    
                 }
-                 
-             }
+            }
              
+         }
     }
     
     
